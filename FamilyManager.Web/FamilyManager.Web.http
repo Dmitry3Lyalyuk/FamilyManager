@@ -1,0 +1,41 @@
+@FamilyManager.Web_HostAddress = http://localhost:5175/api
+
+
+### Get all users
+GET {{FamilyManager.Web_HostAddress}}/users
+Accept: application/json
+
+###
+
+
+### Create a user 
+POST  {{FamilyManager.Web_HostAddress}}/users
+Content-Type:  application/json
+{
+  "username": "newuser",
+"email": "newuser@example.com"
+
+}
+
+###
+
+
+### Get all families 
+GET {{FamilyManager.Web_HostAddress}}/families 
+Accept: application/json
+
+###
+
+
+### Get a families 
+POST {{FamilyManager.Web_HostAddress}}/families
+Content-Type:  application/json
+{
+  "category" : "OST_wall",
+  "name" : "base_wall"
+}
+
+### 
+
+### Delete a certain family 
+DELETE {{FamilyManager.Web_HostAddress}}/families/{id}
