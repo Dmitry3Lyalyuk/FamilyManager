@@ -1,5 +1,6 @@
 ﻿using FamilyManager.Application.Common;
 using FamilyManager.Domain.Entities;
+using FamilyManager.Domain.Enums;
 using MediatR;
 
 namespace FamilyManager.Application.Users.Commands

@@ -1,7 +1,9 @@
-﻿namespace FamilyManager.Domain.Entities
+﻿namespace FamilyManager.Domain.Enums
 {
     public enum Status
     {
         Individual, Company
     }
 }
+
+

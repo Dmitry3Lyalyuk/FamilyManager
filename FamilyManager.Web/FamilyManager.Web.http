@@ -11,9 +11,12 @@ Accept: application/json
 ### Create a user 
 POST  {{FamilyManager.Web_HostAddress}}/users
 Content-Type:  application/json
+
 {
   "username": "newuser",
-"email": "newuser@example.com"
+"email": "newuser@example.com", 
+"role": "explorer",
+"country": "Belarus"
 
 }
 
@@ -30,6 +33,7 @@ Accept: application/json
 ### Get a families 
 POST {{FamilyManager.Web_HostAddress}}/families
 Content-Type:  application/json
+
 {
   "category" : "OST_wall",
   "name" : "base_wall"

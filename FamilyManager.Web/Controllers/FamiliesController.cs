@@ -54,6 +54,27 @@ namespace FamilyManager.Web.Controllers
 
             return NoContent();
         }
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> FamilyUpdate(Guid id, [FromBody] UpdateFamilyCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("Family Id in URL doesn't match in request body");
+            }
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (Exception ex) when (ex.Message.Contains("was not found"))
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

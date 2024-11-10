@@ -1,5 +1,7 @@
 using FamilyManager.Application;
+using FamilyManager.Application.Common;
 using FamilyManager.Infrastructure.Data;
+using FamilyManager.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddScoped<IUser, CurrentUserService>();
+builder.Services.AddHttpContextAccessor();
+
 
 
 var app = builder.Build();

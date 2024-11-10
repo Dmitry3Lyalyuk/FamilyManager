@@ -1,4 +1,5 @@
 ﻿using FamilyManager.Domain.Common;
+using FamilyManager.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace FamilyManager.Domain.Entities

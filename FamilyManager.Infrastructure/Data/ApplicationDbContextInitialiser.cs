@@ -1,4 +1,5 @@
 ﻿using FamilyManager.Domain.Entities;
+using FamilyManager.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -71,7 +72,7 @@ namespace FamilyManager.Infrastructure.Data
                           {
                               Id = Guid.NewGuid(),
                               UserName = "BlackDuck",
-                              Status = Domain.Entities.Status.Company,
+                              Status = Status.Company,
                               Role = "explorer",
                               Country = "Russian Federation",
                               Email = "ru@gmail.com",

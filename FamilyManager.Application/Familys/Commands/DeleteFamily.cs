@@ -5,10 +5,10 @@ namespace FamilyManager.Application.Familys.Commands
 {
     public record DeleteFamilyCommand(Guid Id) : IRequest;
 
-    public class DeleteProjectCommandHandler : IRequestHandler<DeleteFamilyCommand>
+    public class DeleteFalilyCommandHandler : IRequestHandler<DeleteFamilyCommand>
     {
         private readonly IApplicationDbContext _context;
-        public DeleteProjectCommandHandler(IApplicationDbContext context)
+        public DeleteFalilyCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }

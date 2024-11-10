@@ -1,6 +1,8 @@
 ﻿using FamilyManager.Application.Common;
 using FamilyManager.Infrastructure.Data;
+using FamilyManager.Infrastructure.Data.Interseptors;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -11,12 +13,21 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
-        services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString));
+
+        services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+
+        services.AddDbContext<ApplicationDbContext>((sp, options) =>
+        {
+            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+            options.UseSqlServer(connectionString);
+        });
+
+
         services.AddScoped<IApplicationDbContext>(provider =>
         provider.GetRequiredService<ApplicationDbContext>());
 
         services.AddScoped<ApplicationDbContextInitialiser>();
+        services.AddSingleton(TimeProvider.System);
 
         return services;
     }

@@ -45,5 +45,34 @@ namespace FamilyManager.Web.Controllers
                 return StatusCode(500, $"Error: {ex.Message}");
             }
         }
+        [HttpDelete]
+        public async Task<ActionResult> DeleteUser(Guid id)
+        {
+            var command = new DeleteUserCommand(id);
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UserApdate(Guid id, [FromBody] UpdateUserCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("User Id in URL doesn't match Id in request body");
+            }
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (Exception ex) when (ex.Message.Contains("was not found"))
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
