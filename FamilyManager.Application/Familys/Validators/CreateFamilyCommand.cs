@@ -7,10 +7,12 @@ namespace FamilyManager.Application.Familys.Validations
     {
         public CreateFamilyCommandValidator()
         {
-            RuleFor(p => p.Name)
+            RuleFor(f => f.Name)
                 .MaximumLength(30)
-                .NotEmpty();
-            RuleFor(c => c.Category)
+                .NotEmpty()
+                .WithMessage("Name is required.");
+
+            RuleFor(f => f.Category)
                 .NotEmpty();
 
 
