@@ -35,7 +35,7 @@ namespace FamilyManager.Infrastructure.Data
                             UserName = "admin",
                             Status = Status.Individual,
                             Role = "admin",
-                            Country = "Hide",
+                            Country = Country.Russia,
                             Email = "admin@gmail.com",
                             CreatedAt = DateTime.Now,
                             CreatedBy = null,
@@ -48,7 +48,7 @@ namespace FamilyManager.Infrastructure.Data
                             UserName = "Tolik",
                             Status = Status.Individual,
                             Role = "explorer",
-                            Country = "Belarus",
+                            Country = Country.Turkey,
                             Email = "tolik@gmail.com",
                             CreatedAt = DateTime.Now,
                             CreatedBy = null,
@@ -61,7 +61,7 @@ namespace FamilyManager.Infrastructure.Data
                              UserName = "Dima",
                              Status = Status.Individual,
                              Role = "explorer",
-                             Country = "Poland",
+                             Country = Country.England,
                              Email = "dimon@gmail.com",
                              CreatedAt = DateTime.Now,
                              CreatedBy = null,
@@ -74,7 +74,7 @@ namespace FamilyManager.Infrastructure.Data
                               UserName = "BlackDuck",
                               Status = Status.Company,
                               Role = "explorer",
-                              Country = "Russian Federation",
+                              Country = Country.England,
                               Email = "ru@gmail.com",
                               CreatedAt = DateTime.Now,
                               CreatedBy = null,
@@ -90,9 +90,8 @@ namespace FamilyManager.Infrastructure.Data
                         new Family()
                         {
                             Id = Guid.NewGuid(),
-                            Category = "OST_Wall",
+                            Category = Category.Wall,
                             Brand = null,
-                            Template = null,
                             Name = "Base_wall",
                             CreatedAt = DateTime.Now,
                             CreatedBy = null,
@@ -102,15 +101,14 @@ namespace FamilyManager.Infrastructure.Data
                         new Family()
                         {
                             Id = Guid.NewGuid(),
-                            Category = "OST_LightingDevices",
+                            Category = Category.Wall,
                             Brand = null,
-                            Template = null,
                             Name = "Lightins bright",
                             CreatedAt = DateTime.Now,
                             CreatedBy = null,
                             LastModifiedAt = DateTime.Now,
                             LastModifiedBy = null
-                        }); ;
+                        }); ; ;
                 }
 
                 await _context.SaveChangesAsync();

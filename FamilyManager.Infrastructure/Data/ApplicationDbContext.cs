@@ -16,10 +16,21 @@ namespace FamilyManager.Infrastructure.Data
         {
             base.OnModelCreating(builder);
 
-            //builder.Entity<Template>()
-            //    .HasMany(t => t.Family)
-            //    .WithMany(t => t.Template)
-            //    .HasForeignKey(t => t.FamilyId);
+            builder.Entity<Template>()
+                .HasMany(t => t.Families)
+                .WithMany(t => t.Templates);
+
+            builder.Entity<Template>()
+                .HasOne(u => u.User)
+                .WithMany()
+                .HasForeignKey(u => u.UserId);
+
+            builder.Entity<Family>()
+                .HasOne(u => u.User)
+                .WithMany()
+                .HasForeignKey(u => u.UserId);
+
+
 
         }
     }

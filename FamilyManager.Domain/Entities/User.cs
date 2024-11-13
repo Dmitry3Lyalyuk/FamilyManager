@@ -9,7 +9,7 @@ namespace FamilyManager.Domain.Entities
         public string UserName { get; set; }
         public Status Status { get; init; }
         public string Role { get; set; }
-        public string Country { get; set; }
+        public Country Country { get; set; }
 
         [EmailAddress]
         public string Email { get; set; }

@@ -1,12 +1,13 @@
 ﻿using FamilyManager.Application.Common;
 using FamilyManager.Domain.Entities;
+using FamilyManager.Domain.Enums;
 using MediatR;
 
 namespace FamilyManager.Application.Families.Commands
 {
     public class CreateFamilyCommand : IRequest<Guid>
     {
-        public string Category { get; set; }
+        public Category Category { get; set; }
 
         public string Name { get; set; }
     }

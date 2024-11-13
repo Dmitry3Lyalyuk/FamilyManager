@@ -10,7 +10,7 @@ namespace FamilyManager.Application.Users.Commands
         public string UserName { get; set; }
         public Status Status { get; init; }
         public string Role { get; set; }
-        public string Country { get; set; }
+        public Country Country { get; set; }
         public string Email { get; set; }
     }
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>

@@ -1,4 +1,5 @@
 ﻿using FamilyManager.Application.Common;
+using FamilyManager.Domain.Enums;
 using MediatR;
 
 namespace FamilyManager.Application.Users.Commands
@@ -7,7 +8,7 @@ namespace FamilyManager.Application.Users.Commands
     {
         public Guid Id { get; set; }
         public string Role { get; set; }
-        public string Country { get; set; }
+        public Country Country { get; set; }
         public string Email { get; set; }
 
     }
