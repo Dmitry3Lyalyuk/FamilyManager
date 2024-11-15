@@ -8,7 +8,7 @@ namespace FamilyManager.Application.Users.Validators
         public UpdateUserCommandValidator()
         {
             RuleFor(u => u.Country)
-                .NotEmpty().WithMessage("Country is required.");
+                .IsInEnum().WithMessage("Country is required.");
 
             RuleFor(u => u.Email)
                  .NotEmpty().WithMessage("Email is required")

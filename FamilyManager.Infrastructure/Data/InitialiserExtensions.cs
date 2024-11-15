@@ -7,7 +7,7 @@ namespace FamilyManager.Infrastructure.Data
         public static async Task InitialiseDbAsync(this IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateAsyncScope();
-            var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
+            var initialiser = scope.ServiceProvider.GetRequiredService<DbContextInitialiser>();
 
             await initialiser.InitialiseAsync();
             await initialiser.SeedAsync();

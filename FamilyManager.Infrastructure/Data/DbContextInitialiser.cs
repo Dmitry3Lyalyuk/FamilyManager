@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Infrastructure.Data
 {
-    public class ApplicationDbContextInitialiser
+    public class DbContextInitialiser
     {
         private readonly ApplicationDbContext _context;
-        public ApplicationDbContextInitialiser(ApplicationDbContext context)
+        public DbContextInitialiser(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -18,20 +18,24 @@ namespace FamilyManager.Infrastructure.Data
             {
                 await _context.Database.MigrateAsync();
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public async Task SeedAsync()
         {
             try
             {
-                if (_context.Users.Any())
+                var adminId = Guid.NewGuid();
+
+                if (!_context.Users.Any())
                 {
-                    var adminId = new Guid();
 
                     _context.Users.AddRange(
                         new User
                         {
-                            Id = adminId,
+                            Id = Guid.NewGuid(),
                             UserName = "admin",
                             Status = Status.Individual,
                             Role = "admin",
@@ -84,7 +88,7 @@ namespace FamilyManager.Infrastructure.Data
                         );
                 }
 
-                if (_context.Families.Any())
+                if (!_context.Families.Any())
                 {
                     _context.Families.AddRange(
                         new Family()
@@ -116,7 +120,7 @@ namespace FamilyManager.Infrastructure.Data
             }
             catch
             {
-
+                throw;
             }
         }
 
