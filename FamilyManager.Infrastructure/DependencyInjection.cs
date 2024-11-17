@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Common;
+﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Infrastructure.Data;
 using FamilyManager.Infrastructure.Data.Interseptors;
 using Microsoft.EntityFrameworkCore;

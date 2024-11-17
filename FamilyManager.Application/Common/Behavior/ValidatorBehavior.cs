@@ -1,6 +1,9 @@
 ﻿using FluentValidation;
 using MediatR;
 
+using ValidationException = FamilyManager.Application.Common.Exceptions.ValidationExeption;
+
+
 namespace FamilyManager.Application.Common.Behavior
 {
     public class ValidatorBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>

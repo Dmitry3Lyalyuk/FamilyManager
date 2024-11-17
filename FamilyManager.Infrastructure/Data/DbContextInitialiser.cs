@@ -36,7 +36,7 @@ namespace FamilyManager.Infrastructure.Data
                         new User
                         {
                             Id = Guid.NewGuid(),
-                            UserName = "admin",
+                            UserName = "admin228",
                             Status = Status.Individual,
                             Role = "admin",
                             Country = Country.Russia,
@@ -55,9 +55,9 @@ namespace FamilyManager.Infrastructure.Data
                             Country = Country.Turkey,
                             Email = "tolik@gmail.com",
                             CreatedAt = DateTime.Now,
-                            CreatedBy = null,
+                            CreatedBy = adminId,
                             LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+                            LastModifiedBy = adminId
                         },
                          new User
                          {
@@ -68,9 +68,9 @@ namespace FamilyManager.Infrastructure.Data
                              Country = Country.England,
                              Email = "dimon@gmail.com",
                              CreatedAt = DateTime.Now,
-                             CreatedBy = null,
+                             CreatedBy = adminId,
                              LastModifiedAt = DateTime.Now,
-                             LastModifiedBy = null
+                             LastModifiedBy = adminId
                          },
                           new User
                           {
@@ -81,9 +81,9 @@ namespace FamilyManager.Infrastructure.Data
                               Country = Country.England,
                               Email = "ru@gmail.com",
                               CreatedAt = DateTime.Now,
-                              CreatedBy = null,
+                              CreatedBy = adminId,
                               LastModifiedAt = DateTime.Now,
-                              LastModifiedBy = null
+                              LastModifiedBy = adminId
                           }
                         );
                 }
@@ -98,9 +98,9 @@ namespace FamilyManager.Infrastructure.Data
                             Brand = null,
                             Name = "Base_wall",
                             CreatedAt = DateTime.Now,
-                            CreatedBy = null,
+                            CreatedBy = adminId,
                             LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+                            LastModifiedBy = adminId
                         },
                         new Family()
                         {
@@ -109,9 +109,9 @@ namespace FamilyManager.Infrastructure.Data
                             Brand = null,
                             Name = "Lightins bright",
                             CreatedAt = DateTime.Now,
-                            CreatedBy = null,
+                            CreatedBy = adminId,
                             LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+                            LastModifiedBy = adminId
                         }); ; ;
                 }
 

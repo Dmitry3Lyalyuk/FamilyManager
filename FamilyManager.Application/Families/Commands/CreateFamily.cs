@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Common;
+﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Domain.Entities;
 using FamilyManager.Domain.Enums;
 using MediatR;
