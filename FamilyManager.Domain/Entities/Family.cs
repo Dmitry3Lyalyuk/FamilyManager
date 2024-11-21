@@ -7,7 +7,7 @@ namespace FamilyManager.Domain.Entities
     {
         public Category Category { get; set; }
         public string? Brand { get; set; }
-        // public string? Template { get; set; }
+        //public string? Template { get; set; }
         public string Name { get; set; }
         public Guid UserId { get; set; }
         public User User { get; set; }

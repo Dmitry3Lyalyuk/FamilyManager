@@ -11,9 +11,9 @@ namespace FamilyManager.Domain.Entities
         public Guid UserId { get; set; }
         public User User { get; set; }
         public Guid? FamilyId { get; set; }
-        //public Family? Family { get; set; }
+        public Family? Family { get; set; }
 
-        public ICollection<Family> Families { get; set; } = [];
+        // public ICollection<Family> Families { get; set; } = [];
 
 
     }

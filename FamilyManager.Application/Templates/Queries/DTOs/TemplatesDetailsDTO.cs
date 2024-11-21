@@ -1,5 +1,4 @@
-﻿using FamilyManager.Domain.Entities;
-using FamilyManager.Domain.Enums;
+﻿using FamilyManager.Domain.Enums;
 
 namespace FamilyManager.Application.Templates.Queries.DTOs
 {
@@ -9,9 +8,9 @@ namespace FamilyManager.Application.Templates.Queries.DTOs
         public string Name { get; set; }
         public string? Description { get; set; }
         public Section Section { get; set; }
-        // public string Family { get; set; }
+        public string Family { get; set; }
 
-        public ICollection<Family> Families { get; set; } = [];
+        // public ICollection<Family> Families { get; set; } = [];
 
     }
 }

@@ -24,6 +24,8 @@ namespace FamilyManager.Application.Families.Querries
                     Id = f.Id,
                     Name = f.Name
 
+
+
                 }).ToListAsync(cancellationToken);
 
         }

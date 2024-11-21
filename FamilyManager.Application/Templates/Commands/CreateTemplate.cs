@@ -30,7 +30,7 @@ namespace FamilyManager.Application.Templates.Commands
                 Section = Domain.Enums.Section.DefaultMetric
 
 
-                // Families=request.
+                //  Families=request.
             };
             _context.Templates.Add(template);
             await _context.SaveChangesAsync(cancellationToken);

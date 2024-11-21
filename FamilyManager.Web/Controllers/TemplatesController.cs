@@ -18,7 +18,7 @@ namespace FamilyManager.Web.Controllers
         /// <summary>
         /// Get details of a specific template by Id.
         /// </summary>
-        /// <param name=templatetId">The Id of the template.</param>
+        /// <param name="templateId">The Id of the template.</param>
         /// <returns>The details of the specified template.</returns>
         /// <response code="200">Returns the template details.</response>
         /// <response code="404">If the template is not found.</response>

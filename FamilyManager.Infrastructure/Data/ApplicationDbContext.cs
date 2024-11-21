@@ -19,8 +19,9 @@ namespace FamilyManager.Infrastructure.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Template>()
-                .HasMany(t => t.Families)
-                .WithMany(t => t.Templates);
+                .HasOne(t => t.Family)
+                .WithMany(t => t.Templates)
+                .HasForeignKey(t => t.FamilyId);
 
             builder.Entity<Template>()
                 .HasOne(u => u.User)

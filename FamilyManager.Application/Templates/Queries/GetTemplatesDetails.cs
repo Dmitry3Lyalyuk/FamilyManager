@@ -26,8 +26,8 @@ namespace FamilyManager.Application.Templates.Queries
                     Id = t.Id,
 
                     Description = t.Description,
-                    Section = t.Section,
-                    Families = t.Families
+                    Section = t.Section
+                    //Family=t.Family.Name
                 }).FirstOrDefaultAsync(cancellationToken);
             if (tamplatedetails == null)
             {
