@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Common;
+﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,9 +9,11 @@ namespace FamilyManager.Infrastructure.Data
 
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Template> Template { get; set; }
 
         public DbSet<Family> Families { get; set; }
+
+        public DbSet<Template> Templates { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

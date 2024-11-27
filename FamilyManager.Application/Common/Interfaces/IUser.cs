@@ -1,4 +1,4 @@
-﻿namespace FamilyManager.Application.Common
+﻿namespace FamilyManager.Application.Common.Interfaces
 {
     public interface IUser
     {

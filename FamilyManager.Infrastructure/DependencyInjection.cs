@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Common;
+﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Infrastructure.Data;
 using FamilyManager.Infrastructure.Data.Interseptors;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +26,7 @@ public static class DependencyInjection
         services.AddScoped<IApplicationDbContext>(provider =>
         provider.GetRequiredService<ApplicationDbContext>());
 
-        services.AddScoped<ApplicationDbContextInitialiser>();
+        services.AddScoped<DbContextInitialiser>();
         services.AddSingleton(TimeProvider.System);
 
         return services;

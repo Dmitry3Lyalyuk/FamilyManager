@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Common;
+﻿using FamilyManager.Application.Common.Interfaces;
 using System.Security.Claims;
 
 namespace FamilyManager.Web.Services

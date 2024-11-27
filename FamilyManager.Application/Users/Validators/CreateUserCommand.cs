@@ -1,6 +1,7 @@
-﻿using FamilyManager.Application.Common;
+﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Application.Users.Commands;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Application.Users.Validators
 {
@@ -13,16 +14,20 @@ namespace FamilyManager.Application.Users.Validators
 
             RuleFor(u => u.UserName)
                 .NotEmpty().WithMessage("Name is required.")
-                .MaximumLength(20).WithMessage("Name cannot exceed 20 characters.");
+                .MaximumLength(20).WithMessage("Name cannot exceed 20 characters.")
+                .MustAsync(BeUniqueUserName).WithMessage("Username must be unique.");
 
             RuleFor(u => u.Country)
-                .NotEmpty().WithMessage("Country is required.");
+                .IsInEnum().WithMessage("Country is required.");
 
             RuleFor(u => u.Email)
                  .NotEmpty().WithMessage("Email is required")
                  .EmailAddress().WithMessage("Email should have a valid email format.");
 
-
+        }
+        private async Task<bool> BeUniqueUserName(string username, CancellationToken cancellationToken)
+        {
+            return !await _context.Users.AnyAsync(u => u.UserName == username, cancellationToken);
         }
     }
 }

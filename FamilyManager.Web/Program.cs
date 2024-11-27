@@ -1,6 +1,7 @@
 using FamilyManager.Application;
-using FamilyManager.Application.Common;
+using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Infrastructure.Data;
+using FamilyManager.Web;
 using FamilyManager.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+
+builder.Services.AddExceptionHandler<CastomExceptionHandler>();
 builder.Services.AddScoped<IUser, CurrentUserService>();
 builder.Services.AddHttpContextAccessor();
 
@@ -33,5 +36,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseExceptionHandler(oprions => { });
 
 app.Run();

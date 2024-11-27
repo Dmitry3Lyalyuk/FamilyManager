@@ -7,6 +7,7 @@
         England,
         Germany,
         Spain,
-        Turkey
+        Turkey,
+        Belarus
     }
 }

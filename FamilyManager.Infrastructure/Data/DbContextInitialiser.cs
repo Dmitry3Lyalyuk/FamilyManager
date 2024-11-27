@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Infrastructure.Data
 {
-    public class ApplicationDbContextInitialiser
+    public class DbContextInitialiser
     {
         private readonly ApplicationDbContext _context;
-        public ApplicationDbContextInitialiser(ApplicationDbContext context)
+        public DbContextInitialiser(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -18,21 +18,25 @@ namespace FamilyManager.Infrastructure.Data
             {
                 await _context.Database.MigrateAsync();
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         public async Task SeedAsync()
         {
             try
             {
-                if (_context.Users.Any())
+                var adminId = Guid.NewGuid();
+
+                if (!_context.Users.Any())
                 {
-                    var adminId = new Guid();
 
                     _context.Users.AddRange(
                         new User
                         {
-                            Id = adminId,
-                            UserName = "admin",
+                            Id = Guid.NewGuid(),
+                            UserName = "admin228",
                             Status = Status.Individual,
                             Role = "admin",
                             Country = Country.Russia,
@@ -51,9 +55,9 @@ namespace FamilyManager.Infrastructure.Data
                             Country = Country.Turkey,
                             Email = "tolik@gmail.com",
                             CreatedAt = DateTime.Now,
-                            CreatedBy = null,
+                            CreatedBy = adminId,
                             LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+                            LastModifiedBy = adminId
                         },
                          new User
                          {
@@ -64,9 +68,9 @@ namespace FamilyManager.Infrastructure.Data
                              Country = Country.England,
                              Email = "dimon@gmail.com",
                              CreatedAt = DateTime.Now,
-                             CreatedBy = null,
+                             CreatedBy = adminId,
                              LastModifiedAt = DateTime.Now,
-                             LastModifiedBy = null
+                             LastModifiedBy = adminId
                          },
                           new User
                           {
@@ -77,14 +81,14 @@ namespace FamilyManager.Infrastructure.Data
                               Country = Country.England,
                               Email = "ru@gmail.com",
                               CreatedAt = DateTime.Now,
-                              CreatedBy = null,
+                              CreatedBy = adminId,
                               LastModifiedAt = DateTime.Now,
-                              LastModifiedBy = null
+                              LastModifiedBy = adminId
                           }
                         );
                 }
 
-                if (_context.Families.Any())
+                if (!_context.Families.Any())
                 {
                     _context.Families.AddRange(
                         new Family()
@@ -94,9 +98,9 @@ namespace FamilyManager.Infrastructure.Data
                             Brand = null,
                             Name = "Base_wall",
                             CreatedAt = DateTime.Now,
-                            CreatedBy = null,
+                            CreatedBy = adminId,
                             LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+                            LastModifiedBy = adminId
                         },
                         new Family()
                         {
@@ -105,9 +109,9 @@ namespace FamilyManager.Infrastructure.Data
                             Brand = null,
                             Name = "Lightins bright",
                             CreatedAt = DateTime.Now,
-                            CreatedBy = null,
+                            CreatedBy = adminId,
                             LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+                            LastModifiedBy = adminId
                         }); ; ;
                 }
 
@@ -116,7 +120,7 @@ namespace FamilyManager.Infrastructure.Data
             }
             catch
             {
-
+                throw;
             }
         }
 
