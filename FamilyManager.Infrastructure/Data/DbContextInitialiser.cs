@@ -41,10 +41,7 @@ namespace FamilyManager.Infrastructure.Data
                             Role = "admin",
                             Country = Country.Russia,
                             Email = "admin@gmail.com",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = null,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
+
                         },
                         new User
                         {
@@ -54,10 +51,7 @@ namespace FamilyManager.Infrastructure.Data
                             Role = "explorer",
                             Country = Country.Turkey,
                             Email = "tolik@gmail.com",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = adminId,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = adminId
+
                         },
                          new User
                          {
@@ -67,10 +61,7 @@ namespace FamilyManager.Infrastructure.Data
                              Role = "explorer",
                              Country = Country.England,
                              Email = "dimon@gmail.com",
-                             CreatedAt = DateTime.Now,
-                             CreatedBy = adminId,
-                             LastModifiedAt = DateTime.Now,
-                             LastModifiedBy = adminId
+
                          },
                           new User
                           {
@@ -80,40 +71,37 @@ namespace FamilyManager.Infrastructure.Data
                               Role = "explorer",
                               Country = Country.England,
                               Email = "ru@gmail.com",
-                              CreatedAt = DateTime.Now,
-                              CreatedBy = adminId,
-                              LastModifiedAt = DateTime.Now,
-                              LastModifiedBy = adminId
+
                           }
                         );
                 }
 
-                if (!_context.Families.Any())
-                {
-                    _context.Families.AddRange(
-                        new Family()
-                        {
-                            Id = Guid.NewGuid(),
-                            Category = Category.Wall,
-                            Brand = null,
-                            Name = "Base_wall",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = adminId,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = adminId
-                        },
-                        new Family()
-                        {
-                            Id = Guid.NewGuid(),
-                            Category = Category.Wall,
-                            Brand = null,
-                            Name = "Lightins bright",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = adminId,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = adminId
-                        }); ; ;
-                }
+                //if (!_context.Families.Any())
+                //{
+                //    _context.Families.AddRange(
+                //        new Family()
+                //        {
+                //            Id = Guid.NewGuid(),
+                //            Category = Category.Wall,
+                //            Brand = null,
+                //            Name = "Base_wall",
+                //            CreatedAt = DateTime.Now,
+                //            CreatedBy = adminId,
+                //            LastModifiedAt = DateTime.Now,
+                //            LastModifiedBy = adminId
+                //        },
+                //        new Family()
+                //        {
+                //            Id = Guid.NewGuid(),
+                //            Category = Category.Wall,
+                //            Brand = null,
+                //            Name = "Lightins bright",
+                //            CreatedAt = DateTime.Now,
+                //            CreatedBy = adminId,
+                //            LastModifiedAt = DateTime.Now,
+                //            LastModifiedBy = adminId
+                //        });
+                //}
 
                 await _context.SaveChangesAsync();
 

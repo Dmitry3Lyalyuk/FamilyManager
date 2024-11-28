@@ -27,7 +27,7 @@ namespace FamilyManager.Application.Templates.Commands
             {
                 Name = request.Name,
                 Description = request.Description,
-                Section = Domain.Enums.Section.DefaultMetric
+                Section = request.Section,
 
 
                 //  Families=request.

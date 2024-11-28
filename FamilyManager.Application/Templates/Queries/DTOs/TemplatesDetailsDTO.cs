@@ -8,9 +8,8 @@ namespace FamilyManager.Application.Templates.Queries.DTOs
         public string Name { get; set; }
         public string? Description { get; set; }
         public Section Section { get; set; }
-        public string Family { get; set; }
-
-        // public ICollection<Family> Families { get; set; } = [];
+        public string Familyname { get; set; }
+        //public ICollection<Family> Families { get; set; } = [];
 
     }
 }
