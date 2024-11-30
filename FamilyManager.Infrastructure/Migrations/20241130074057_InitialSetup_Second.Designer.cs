@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FamilyManager.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241129195920_Overhead")]
-    partial class Overhead
+    [Migration("20241130074057_InitialSetup_Second")]
+    partial class InitialSetup_Second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,7 +78,7 @@ namespace FamilyManager.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("FamilyId")
+                    b.Property<Guid>("FamilyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastModifiedAt")
@@ -162,7 +162,9 @@ namespace FamilyManager.Infrastructure.Migrations
                 {
                     b.HasOne("FamilyManager.Domain.Entities.Family", "Family")
                         .WithMany("Templates")
-                        .HasForeignKey("FamilyId");
+                        .HasForeignKey("FamilyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FamilyManager.Domain.Entities.User", "User")
                         .WithMany()

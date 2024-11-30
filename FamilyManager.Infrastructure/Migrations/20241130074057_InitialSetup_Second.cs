@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FamilyManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Overhead : Migration
+    public partial class InitialSetup_Second : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,7 +47,7 @@ namespace FamilyManager.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Section = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FamilyId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    FamilyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -60,7 +60,8 @@ namespace FamilyManager.Infrastructure.Migrations
                         name: "FK_Templates_Families_FamilyId",
                         column: x => x.FamilyId,
                         principalTable: "Families",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Templates_Users_UserId",
                         column: x => x.UserId,
