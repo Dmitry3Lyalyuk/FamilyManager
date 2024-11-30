@@ -4,10 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Application.Families.Querries
 {
-    public record GetAllFamiliesQuery : IRequest<List<FamilyDTO>>
-    {
+    public record GetAllFamiliesQuery : IRequest<List<FamilyDTO>>;
 
-    }
     public class GetAllFamiliesQueryHandler : IRequestHandler<GetAllFamiliesQuery, List<FamilyDTO>>
     {
         private readonly IApplicationDbContext _context;
@@ -23,8 +21,6 @@ namespace FamilyManager.Application.Families.Querries
                 {
                     Id = f.Id,
                     Name = f.Name
-
-
 
                 }).ToListAsync(cancellationToken);
 

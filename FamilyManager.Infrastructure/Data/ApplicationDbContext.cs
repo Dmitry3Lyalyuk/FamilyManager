@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Infrastructure.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IApplicationDbContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options),
+        IApplicationDbContext
 
     {
         public DbSet<User> Users { get; set; }
@@ -32,8 +33,6 @@ namespace FamilyManager.Infrastructure.Data
                 .HasOne(u => u.User)
                 .WithMany()
                 .HasForeignKey(u => u.UserId);
-
-
 
         }
     }
