@@ -1,6 +1,7 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Infrastructure.Data;
 using FamilyManager.Infrastructure.Data.Interseptors;
+using FamilyManager.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,8 @@ public static class DependencyInjection
 
         services.AddScoped<DbContextInitialiser>();
         services.AddSingleton(TimeProvider.System);
+
+        services.AddTransient<IIdentityService, IdentityService>();
 
         return services;
     }

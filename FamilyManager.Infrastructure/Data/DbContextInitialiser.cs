@@ -1,6 +1,9 @@
 ﻿using FamilyManager.Domain.Entities;
 using FamilyManager.Domain.Enums;
+using FamilyManager.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 namespace FamilyManager.Infrastructure.Data
@@ -8,9 +11,18 @@ namespace FamilyManager.Infrastructure.Data
     public class DbContextInitialiser
     {
         private readonly ApplicationDbContext _context;
-        public DbContextInitialiser(ApplicationDbContext context)
+        private readonly ILogger<DbContextInitialiser> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public DbContextInitialiser(ApplicationDbContext context,
+            ILogger<DbContextInitialiser> logger,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public async Task InitialiseAsync()
         {
@@ -20,6 +32,7 @@ namespace FamilyManager.Infrastructure.Data
             }
             catch (Exception ex)
             {
+                _logger.LogError("An error occured while applying migrations.");
                 throw;
             }
         }
@@ -108,11 +121,32 @@ namespace FamilyManager.Infrastructure.Data
             }
             catch
             {
+                _logger.LogError("An error occured while seeding the database.");
                 throw;
             }
+
         }
-
-
+        public async Task TrySeedAsync()
+        {
+            var roles = Enum.GetNames(typeof(Roles));
+            foreach (var role in roles)
+            {
+                if (_roleManager.Roles.All(r => r.Name != role))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+            var admin = new ApplicationUser
+            {
+                UserName = "admin@test.com",
+                Email = "admin@test.com"
+            };
+            if (_userManager.Users.All(u => u.UserName != admin.UserName))
+            {
+                await _userManager.CreateAsync(admin, "Admin111");
+                await _userManager.AddToRolesAsync(admin, [Roles.Administrator.ToString()]);
+            }
+        }
     }
 
 }

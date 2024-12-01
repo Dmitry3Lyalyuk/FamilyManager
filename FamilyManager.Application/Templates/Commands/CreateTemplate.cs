@@ -29,8 +29,6 @@ namespace FamilyManager.Application.Templates.Commands
                 Description = request.Description,
                 Section = request.Section,
 
-
-                //  Families=request.
             };
             _context.Templates.Add(template);
             await _context.SaveChangesAsync(cancellationToken);

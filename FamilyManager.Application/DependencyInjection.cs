@@ -16,6 +16,7 @@ namespace FamilyManager.Application
                     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                     cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidatorBehaviour<,>));
                     cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionsBehaviour<,>));
+                    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
                 });
             return services;
         }
