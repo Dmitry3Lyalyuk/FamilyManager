@@ -27,12 +27,14 @@ namespace FamilyManager.Infrastructure.Data
             builder.Entity<Template>()
                 .HasOne(u => u.User)
                 .WithMany()
-                .HasForeignKey(u => u.UserId);
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.Entity<Family>()
                 .HasOne(u => u.User)
                 .WithMany()
-                .HasForeignKey(u => u.UserId);
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
         }
     }

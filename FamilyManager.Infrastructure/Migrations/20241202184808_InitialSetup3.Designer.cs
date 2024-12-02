@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FamilyManager.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241130074057_InitialSetup_Second")]
-    partial class InitialSetup_Second
+    [Migration("20241202184808_InitialSetup3")]
+    partial class InitialSetup3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,7 +152,6 @@ namespace FamilyManager.Infrastructure.Migrations
                     b.HasOne("FamilyManager.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -169,7 +168,6 @@ namespace FamilyManager.Infrastructure.Migrations
                     b.HasOne("FamilyManager.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Family");

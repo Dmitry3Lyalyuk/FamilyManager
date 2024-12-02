@@ -149,7 +149,6 @@ namespace FamilyManager.Infrastructure.Migrations
                     b.HasOne("FamilyManager.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -166,7 +165,6 @@ namespace FamilyManager.Infrastructure.Migrations
                     b.HasOne("FamilyManager.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Family");
