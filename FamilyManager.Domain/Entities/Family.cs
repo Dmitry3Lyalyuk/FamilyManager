@@ -9,8 +9,8 @@ namespace FamilyManager.Domain.Entities
         public string? Brand { get; set; }
         //public string? Template { get; set; }
         public string Name { get; set; }
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        public Guid? UserId { get; set; }
+        public User? User { get; set; }
 
         public ICollection<Template> Templates { get; set; }
     }
