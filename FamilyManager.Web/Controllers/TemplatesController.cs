@@ -34,17 +34,38 @@ namespace FamilyManager.Web.Controllers
             }
             return Ok(result);
         }
+
+        /// <summary>
+        /// Create a new template.
+        /// </summary>
+        /// <param name="command">The command to create a template.</param>
+        /// <returns>The Id of the created template.</returns>
+        /// <response code="200">Returns the Id of the newly created template.</response>
+        /// <response code="400">If the request is invalid or an error occurs.</response>
         [HttpPost]
         public async Task<IActionResult> CreateTemplate([FromBody] CreateTemplateCommand command)
         {
-            var templateId = await _mediator.Send(command);
-            if (templateId == Guid.Empty)
+            try
             {
-                return BadRequest("An error occurred!");
+                var templateId = await _mediator.Send(command);
+
+                return Ok(templateId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return Ok(templateId);
         }
+
+        /// <summary>
+        /// Update an existing template.
+        /// </summary>
+        /// <param name="id">The Id of the template to update.</param>
+        /// <param name="command">The command containing updated template data.</param>
+        /// <response code="204">Template successfully updated.</response>
+        /// <response code="400">If the request is invalid or Ids do not match.</response>
+        /// <response code="404">If the template is not found.</response>
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdateTemplate(Guid id, [FromBody] UpdateTemplateCommand command)
         {

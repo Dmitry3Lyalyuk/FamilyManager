@@ -76,33 +76,6 @@ namespace FamilyManager.Infrastructure.Data
                         );
                 }
 
-                //if (!_context.Families.Any())
-                //{
-                //    _context.Families.AddRange(
-                //        new Family()
-                //        {
-                //            Id = Guid.NewGuid(),
-                //            Category = Category.Wall,
-                //            Brand = null,
-                //            Name = "Base_wall",
-                //            CreatedAt = DateTime.Now,
-                //            CreatedBy = adminId,
-                //            LastModifiedAt = DateTime.Now,
-                //            LastModifiedBy = adminId
-                //        },
-                //        new Family()
-                //        {
-                //            Id = Guid.NewGuid(),
-                //            Category = Category.Wall,
-                //            Brand = null,
-                //            Name = "Lightins bright",
-                //            CreatedAt = DateTime.Now,
-                //            CreatedBy = adminId,
-                //            LastModifiedAt = DateTime.Now,
-                //            LastModifiedBy = adminId
-                //        });
-                //}
-
                 await _context.SaveChangesAsync();
 
             }

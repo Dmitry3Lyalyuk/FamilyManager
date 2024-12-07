@@ -9,29 +9,30 @@ namespace FamilyManager.Application.Families.Commands
     {
         public Category Category { get; set; }
         public string Name { get; set; }
-        public string Brand { get; init; }
-        //public Guid? UserId { get; init; }
-    }
-    public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>
-    {
-        private readonly IApplicationDbContext _context;
-        public CreateFamilyCommandHandler(IApplicationDbContext context)
+        public string Brand
         {
-            _context = context;
+            get; init;
         }
-        public async Task<Guid> Handle(CreateFamilyCommand request, CancellationToken cancellationToken)
+        public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>
         {
-            var entity = new Family
+            private readonly IApplicationDbContext _context;
+            public CreateFamilyCommandHandler(IApplicationDbContext context)
             {
-                Name = request.Name,
-                Category = request.Category,
-                Brand = request.Brand
-                //UserId = Guid.Parse("98ac7f7c-9788-4125-a728-06c8001b90a0")
-            };
-            _context.Families.Add(entity);
-            await _context.SaveChangesAsync(cancellationToken);
+                _context = context;
+            }
+            public async Task<Guid> Handle(CreateFamilyCommand request, CancellationToken cancellationToken)
+            {
+                var entity = new Family
+                {
+                    Name = request.Name,
+                    Category = request.Category,
+                    Brand = request.Brand
+                };
+                _context.Families.Add(entity);
+                await _context.SaveChangesAsync(cancellationToken);
 
-            return entity.Id;
+                return entity.Id;
+            }
         }
     }
 }
