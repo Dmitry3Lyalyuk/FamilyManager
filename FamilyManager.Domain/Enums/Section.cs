@@ -7,6 +7,5 @@
         Mechanical,
         Plumbing,
         Structural
-
     }
 }

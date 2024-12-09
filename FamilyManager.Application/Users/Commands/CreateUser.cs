@@ -22,14 +22,10 @@ namespace FamilyManager.Application.Users.Commands
         {
             _context = context;
             _validator = validator;
-
-
         }
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-
-
-            var entity = new User()
+            var entity = new User
             {
                 UserName = request.UserName,
                 Role = request.Role,

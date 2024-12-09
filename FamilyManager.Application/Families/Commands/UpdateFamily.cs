@@ -21,6 +21,7 @@ namespace FamilyManager.Application.Familys.Commands
         public async Task Handle(UpdateFamilyCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Families.FindAsync([request.Id], cancellationToken);
+
             if (entity == null)
             {
                 throw new Exception($"Entity with Id={request.Id} was not found.");

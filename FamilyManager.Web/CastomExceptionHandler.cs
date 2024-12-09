@@ -19,12 +19,14 @@ namespace FamilyManager.Web
             CancellationToken cancellationToken)
         {
             var exeptionType = exception.GetType();
+
             if (_exceptionHandlers.ContainsKey(exeptionType))
             {
                 await _exceptionHandlers[exeptionType].Invoke(httpContext, exception);
 
                 return true;
             }
+
             return false;
         }
         public async Task HanleValidationExeption(HttpContext httpContext, Exception ex)

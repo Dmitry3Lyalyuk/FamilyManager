@@ -32,6 +32,7 @@ namespace FamilyManager.Web.Controllers
             {
                 return NotFound();
             }
+
             return Ok(result);
         }
 
@@ -77,6 +78,7 @@ namespace FamilyManager.Web.Controllers
             try
             {
                 await _mediator.Send(command);
+
                 return NoContent();
             }
             catch (Exception ex) when (ex.Message.Contains("was not found"))

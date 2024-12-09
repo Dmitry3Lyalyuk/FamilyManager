@@ -1,18 +1,20 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace FamilyManager.Infrastructure.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options),
-        IApplicationDbContext
-
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IApplicationDbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<User> Users { get; set; }
-
         public DbSet<Family> Families { get; set; }
-
         public DbSet<Template> Templates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -35,7 +37,9 @@ namespace FamilyManager.Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(u => u.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-
         }
     }
+
+
+
 }

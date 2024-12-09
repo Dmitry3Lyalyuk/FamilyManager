@@ -1,5 +1,4 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Domain.Enums;
 using MediatR;
 
 namespace FamilyManager.Application.Templates.Commands
@@ -9,7 +8,6 @@ namespace FamilyManager.Application.Templates.Commands
         public Guid TemplateId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Section Section { get; set; }
     }
     public class UpdateTemplateCommandHandler : IRequestHandler<UpdateTemplateCommand>
     {
@@ -22,13 +20,13 @@ namespace FamilyManager.Application.Templates.Commands
         public async Task Handle(UpdateTemplateCommand request, CancellationToken cancellationToken)
         {
             var template = await _context.Templates.FindAsync(request.TemplateId);
+
             if (template == null)
             {
                 throw new Exception($"Entity with Id={request.TemplateId} was not found");
             }
             template.Name = request.Name;
             template.Description = request.Description;
-
 
             await _context.SaveChangesAsync(cancellationToken);
         }

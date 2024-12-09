@@ -17,6 +17,7 @@ namespace FamilyManager.Application.Templates.Commands
         public async Task Handle(DeleteTemplateCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Templates.FindAsync([request.Id], cancellationToken);
+
             if (entity == null)
             {
                 throw new Exception($"Entity with Id={request.Id} was not found.");

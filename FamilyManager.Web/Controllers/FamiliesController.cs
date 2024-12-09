@@ -32,8 +32,8 @@ namespace FamilyManager.Web.Controllers
             {
                 return NotFound("No families found!");
             }
-            return Ok(families);
 
+            return Ok(families);
         }
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace FamilyManager.Web.Controllers
                 {
                     return BadRequest("An error occured!");
                 }
-                return Ok(familyId);
 
+                return Ok(familyId);
             }
             catch (Exception ex)
             {
@@ -94,6 +94,7 @@ namespace FamilyManager.Web.Controllers
             try
             {
                 await _mediator.Send(command);
+
                 return NoContent();
             }
             catch (Exception ex) when (ex.Message.Contains("was not found"))

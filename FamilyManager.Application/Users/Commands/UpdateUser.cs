@@ -10,7 +10,6 @@ namespace FamilyManager.Application.Users.Commands
         public string Role { get; set; }
         public Country Country { get; set; }
         public string Email { get; set; }
-
     }
 
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
@@ -21,7 +20,6 @@ namespace FamilyManager.Application.Users.Commands
         {
             _context = context;
         }
-
         public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Users.FindAsync([request.Id], cancellationToken);

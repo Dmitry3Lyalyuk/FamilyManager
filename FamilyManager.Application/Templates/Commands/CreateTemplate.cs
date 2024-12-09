@@ -29,8 +29,8 @@ namespace FamilyManager.Application.Templates.Commands
                 Name = request.Name,
                 Description = request.Description,
                 Section = request.Section,
-                UserId = Guid.Parse("d05faaf9-e56a-43e3-6b55-08dd1300c0f5"),
-                FamilyId = Guid.Parse("ddfefd4d-4a45-4b57-4620-08dd1631db18")
+                UserId = request.UserId,
+                FamilyId = request.FamilyId
             };
             _context.Templates.Add(template);
             await _context.SaveChangesAsync(cancellationToken);
@@ -38,4 +38,5 @@ namespace FamilyManager.Application.Templates.Commands
             return template.Id;
         }
     }
+
 }

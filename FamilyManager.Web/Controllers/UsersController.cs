@@ -31,6 +31,7 @@ namespace FamilyManager.Web.Controllers
             {
                 return NotFound("No user found!");
             }
+
             return Ok(users);
 
         }
@@ -52,6 +53,7 @@ namespace FamilyManager.Web.Controllers
                 {
                     return BadRequest("An error occured!");
                 }
+
                 return Ok(userId);
 
             }
@@ -93,6 +95,7 @@ namespace FamilyManager.Web.Controllers
             try
             {
                 await _mediator.Send(command);
+
                 return NoContent();
             }
             catch (Exception ex) when (ex.Message.Contains("was not found"))
