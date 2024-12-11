@@ -22,10 +22,10 @@ namespace FamilyManager.Application.Templates.Commands
             {
                 throw new Exception($"Entity with Id={request.Id} was not found.");
             }
+
             _context.Templates.Remove(entity);
 
             await _context.SaveChangesAsync(cancellationToken);
-
         }
     }
 }

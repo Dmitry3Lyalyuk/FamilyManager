@@ -25,6 +25,7 @@ namespace FamilyManager.Application.Templates.Commands
             {
                 throw new Exception($"Entity with Id={request.TemplateId} was not found");
             }
+
             template.Name = request.Name;
             template.Description = request.Description;
 

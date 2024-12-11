@@ -38,9 +38,7 @@ namespace FamilyManager.Web
                 Title = ex.Message,
                 Status = StatusCodes.Status400BadRequest,
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
-
             });
         }
     }
-
 }

@@ -27,6 +27,7 @@ namespace FamilyManager.Web.Controllers
         {
             var query = new GetAllUsersQuery();
             var users = await _mediator.Send(query);
+
             if (users is null or [])
             {
                 return NotFound("No user found!");
@@ -49,13 +50,13 @@ namespace FamilyManager.Web.Controllers
             try
             {
                 var userId = await _mediator.Send(command);
+
                 if (userId == Guid.Empty)
                 {
                     return BadRequest("An error occured!");
                 }
 
                 return Ok(userId);
-
             }
             catch (Exception ex)
             {

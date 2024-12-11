@@ -9,6 +9,5 @@ namespace FamilyManager.Application.Templates.Queries.DTOs
         public string? Description { get; set; }
         public Section Section { get; set; }
         public string Familyname { get; set; }
-
     }
 }

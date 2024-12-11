@@ -28,6 +28,7 @@ namespace FamilyManager.Web.Controllers
         {
             var query = new GetAllFamiliesQuery();
             var families = await _mediator.Send(query);
+
             if (families is null or [])
             {
                 return NotFound("No families found!");
@@ -49,6 +50,7 @@ namespace FamilyManager.Web.Controllers
             try
             {
                 var familyId = await _mediator.Send(command);
+
                 if (familyId == Guid.Empty)
                 {
                     return BadRequest("An error occured!");
@@ -106,6 +108,5 @@ namespace FamilyManager.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
     }
 }

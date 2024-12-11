@@ -4,7 +4,7 @@ using MediatR;
 
 namespace FamilyManager.Application.Users.Commands
 {
-    public class UpdateUserCommand : IRequest
+    public record UpdateUserCommand : IRequest
     {
         public Guid Id { get; set; }
         public string Role { get; set; }
@@ -28,6 +28,7 @@ namespace FamilyManager.Application.Users.Commands
             {
                 throw new Exception($"Entity with Id={request.Id} was not found.");
             }
+
             entity.Role = request.Role;
             entity.Country = request.Country;
             entity.Email = request.Email;

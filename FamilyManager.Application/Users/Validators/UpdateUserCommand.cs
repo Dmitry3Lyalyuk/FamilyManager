@@ -14,6 +14,5 @@ namespace FamilyManager.Application.Users.Validators
                  .NotEmpty().WithMessage("Email is required")
                  .EmailAddress().WithMessage("Email should have a valid email format.");
         }
-
     }
 }

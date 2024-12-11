@@ -25,9 +25,6 @@ namespace FamilyManager.Application.Templates.Validatiors
 
             RuleFor(t => t.UserId)
                 .Must(id => id == null || id != Guid.Empty).WithMessage("Valid UserId is required");
-
-
-
         }
     }
 }

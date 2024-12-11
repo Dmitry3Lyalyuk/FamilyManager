@@ -8,7 +8,6 @@ namespace FamilyManager.Application.Common.Behavior
 {
     public class ValidatorBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull
-
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
         public ValidatorBehaviour(IEnumerable<IValidator<TRequest>> validators)
@@ -18,7 +17,6 @@ namespace FamilyManager.Application.Common.Behavior
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
             CancellationToken cancellationToken)
         {
-
             if (_validators.Any())
             {
                 var context = new ValidationContext<TRequest>(request);

@@ -18,6 +18,5 @@ namespace FamilyManager.Application.Familys.Validators
             RuleFor(f => f.Brand)
                 .MaximumLength(30);
         }
-
     }
 }

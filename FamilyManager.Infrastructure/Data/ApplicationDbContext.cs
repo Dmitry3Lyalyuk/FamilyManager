@@ -39,7 +39,4 @@ namespace FamilyManager.Infrastructure.Data
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
-
-
-
 }

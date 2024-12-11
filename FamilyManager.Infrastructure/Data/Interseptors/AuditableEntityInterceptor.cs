@@ -34,19 +34,16 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
 
         public void UpdateEntities(DbContext? context)
         {
-
             if (context == null)
             {
                 return;
             }
             foreach (var entry in context.ChangeTracker.Entries<BaseAuditableEntity>())
             {
-
                 if (entry.State is EntityState.Added or EntityState.Modified
                     || entry.HasChangesOwnedEntities())
                 {
                     var utcNow = _dateTime.GetUtcNow();
-
                     var userId = _user.GetCurrentUser();
 
                     if (entry.State == EntityState.Added)
@@ -54,6 +51,7 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
                         entry.Entity.CreatedBy = userId;
                         entry.Entity.CreatedAt = utcNow.DateTime;
                     }
+
                     entry.Entity.LastModifiedBy = userId;
                     entry.Entity.LastModifiedAt = utcNow.DateTime;
                 }
@@ -70,6 +68,5 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
             r.TargetEntry.Metadata.IsOwned() &&
             (r.TargetEntry.State == EntityState.Added || r.TargetEntry.State == EntityState.Modified));
         }
-
     }
 }

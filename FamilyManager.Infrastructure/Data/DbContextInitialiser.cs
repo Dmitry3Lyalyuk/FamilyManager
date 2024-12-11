@@ -80,8 +80,5 @@ namespace FamilyManager.Infrastructure.Data
                 throw;
             }
         }
-
-
     }
-
 }

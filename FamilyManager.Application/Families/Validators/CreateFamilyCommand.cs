@@ -13,7 +13,6 @@ namespace FamilyManager.Application.Familys.Validations
 
             RuleFor(f => f.Category)
                 .IsInEnum().WithMessage("Category is required");
-
         }
     }
 }

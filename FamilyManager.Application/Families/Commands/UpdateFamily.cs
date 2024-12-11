@@ -26,6 +26,7 @@ namespace FamilyManager.Application.Familys.Commands
             {
                 throw new Exception($"Entity with Id={request.Id} was not found.");
             }
+
             entity.Brand = request.Brand;
             entity.Name = request.Name;
 

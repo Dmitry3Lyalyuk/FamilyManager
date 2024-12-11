@@ -8,6 +8,5 @@ namespace FamilyManager.Infrastructure.Extensions
         {
             return role.ToString();
         }
-
     }
 }

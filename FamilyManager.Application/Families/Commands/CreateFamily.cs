@@ -5,32 +5,32 @@ using MediatR;
 
 namespace FamilyManager.Application.Families.Commands
 {
-    public class CreateFamilyCommand : IRequest<Guid>
+    public record CreateFamilyCommand : IRequest<Guid>
     {
         public Category Category { get; set; }
         public string Name { get; set; }
         public string Brand { get; init; }
+    }
 
-        public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>
+    public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>
+    {
+        private readonly IApplicationDbContext _context;
+        public CreateFamilyCommandHandler(IApplicationDbContext context)
         {
-            private readonly IApplicationDbContext _context;
-            public CreateFamilyCommandHandler(IApplicationDbContext context)
+            _context = context;
+        }
+        public async Task<Guid> Handle(CreateFamilyCommand request, CancellationToken cancellationToken)
+        {
+            var entity = new Family
             {
-                _context = context;
-            }
-            public async Task<Guid> Handle(CreateFamilyCommand request, CancellationToken cancellationToken)
-            {
-                var entity = new Family
-                {
-                    Name = request.Name,
-                    Category = request.Category,
-                    Brand = request.Brand
-                };
-                _context.Families.Add(entity);
-                await _context.SaveChangesAsync(cancellationToken);
+                Name = request.Name,
+                Category = request.Category,
+                Brand = request.Brand
+            };
+            _context.Families.Add(entity);
+            await _context.SaveChangesAsync(cancellationToken);
 
-                return entity.Id;
-            }
+            return entity.Id;
         }
     }
 }
