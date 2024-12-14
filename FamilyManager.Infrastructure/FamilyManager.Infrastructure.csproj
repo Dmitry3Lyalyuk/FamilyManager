@@ -21,8 +21,4 @@
     <ProjectReference Include="..\FamilyManager.Domain\FamilyManager.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Identity\" />
-  </ItemGroup>
-
 </Project>

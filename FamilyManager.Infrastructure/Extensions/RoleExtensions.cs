@@ -1,4 +1,4 @@
-﻿using FamilyManager.Domain.Entities;
+﻿using FamilyManager.Domain.Enums;
 
 namespace FamilyManager.Infrastructure.Extensions
 {

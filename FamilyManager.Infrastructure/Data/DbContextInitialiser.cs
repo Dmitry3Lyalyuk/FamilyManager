@@ -60,7 +60,7 @@ namespace FamilyManager.Infrastructure.Data
                         Country = Country.Turkey
 
                     };
-                    var result = await _userManager.CreateAsync(adminUser, "Admin123");
+                    var result = await _userManager.CreateAsync(adminUser, "Admin123124!");
 
                     if (result.Succeeded)
                     {

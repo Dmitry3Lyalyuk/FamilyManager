@@ -2,6 +2,7 @@
 using FamilyManager.Application.Families.Querries;
 using FamilyManager.Application.Familys.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyManager.Web.Controllers
@@ -45,6 +46,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="200">Returns the Id of the newly created family.</response>
         /// <response code="400">If the request is invalid.</response>
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult<Guid>> CreateFamily([FromBody] CreateFamilyCommand command)
         {
             try
@@ -71,6 +73,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="204">Family successfully deleted.</response>
         /// <response code="404">If the family is not found.</response>
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteFamilyCommand(id);
@@ -87,6 +90,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="204">Family successfully updated.</response>
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         [HttpPut("{id:guid}")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> FamilyUpdate(Guid id, [FromBody] UpdateFamilyCommand command)
         {
             if (id != command.Id)

@@ -1,4 +1,4 @@
-﻿namespace FamilyManager.Domain.Entities
+﻿namespace FamilyManager.Domain.Enums
 {
     public enum ApplicationRole
     {

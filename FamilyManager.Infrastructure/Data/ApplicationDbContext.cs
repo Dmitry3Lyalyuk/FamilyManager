@@ -16,6 +16,7 @@ namespace FamilyManager.Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Family> Families { get; set; }
         public DbSet<Template> Templates { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -37,6 +38,15 @@ namespace FamilyManager.Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(u => u.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.Entity<RefreshToken>()
+                .HasIndex(rt => rt.Token)
+                .IsUnique();
+
+            builder.Entity<RefreshToken>()
+                .HasOne(rt => rt.User)
+                .WithMany()
+                .HasForeignKey(rt => rt.UserId);
         }
     }
 }
