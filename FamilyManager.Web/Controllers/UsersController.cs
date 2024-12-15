@@ -38,33 +38,6 @@ namespace FamilyManager.Web.Controllers
         }
 
         /// <summary>
-        /// Create a new user.
-        /// </summary>
-        /// <param name="command">The command to create a user.</param>
-        /// <returns>The Id of the created user.</returns>
-        /// <response code="200">Returns the Id of the newly created user.</response>
-        /// <response code="400">If the request is invalid.</response>
-        [HttpPost]
-        public async Task<ActionResult<Guid>> CreateUser([FromBody] CreateUserCommand command)
-        {
-            try
-            {
-                var userId = await _mediator.Send(command);
-
-                if (userId == Guid.Empty)
-                {
-                    return BadRequest("An error occured!");
-                }
-
-                return Ok(userId);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
-
-        /// <summary>
         /// Delete a user by Id.
         /// </summary>
         /// <param name="id">The Id of the user to delete.</param>

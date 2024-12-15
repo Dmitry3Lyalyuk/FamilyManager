@@ -55,7 +55,7 @@ namespace FamilyManager.Web.Controllers
             }
             var isValidPassword = await _userManager.CheckPasswordAsync(user, model.Password);
 
-            if (isValidPassword)
+            if (!isValidPassword)
             {
                 return Unauthorized();
             }

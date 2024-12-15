@@ -46,7 +46,6 @@ namespace FamilyManager.Web.Controllers
         /// <response code="200">Returns the Id of the newly created family.</response>
         /// <response code="400">If the request is invalid.</response>
         [HttpPost]
-        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult<Guid>> CreateFamily([FromBody] CreateFamilyCommand command)
         {
             try
