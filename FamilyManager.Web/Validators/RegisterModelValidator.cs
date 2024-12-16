@@ -8,18 +8,18 @@ namespace FamilyManager.Web.Validators
         public RegisterModelValidator()
         {
             RuleFor(s => s.Status)
-                .IsInEnum().WithMessage("Status is required");
+                .IsInEnum().WithMessage("Status is required. Choose one from list below.");
 
             RuleFor(r => r.Role)
-                .NotEmpty().WithMessage("Field s required");
+                .NotEmpty().WithMessage("Field is required");
 
             RuleFor(c => c.Country)
-                .IsInEnum().WithMessage("Field s required");
+                .IsInEnum().WithMessage("Country is required. Choose one from list below.");
 
             RuleFor(un => un.UserName)
                 .MinimumLength(3)
                 .MaximumLength(20)
-                .NotEmpty().WithMessage("Field s required");
+                .NotEmpty().WithMessage("Valid UserName is required.");
 
             RuleFor(em => em.Email)
                 .NotEmpty().WithMessage("Email is required")

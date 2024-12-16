@@ -40,7 +40,7 @@ namespace FamilyManager.Infrastructure.Identity
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Issuer"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -71,14 +71,14 @@ namespace FamilyManager.Infrastructure.Identity
 
             if (storedToken == null || storedToken.ExpiresOn < DateTime.UtcNow)
             {
-                throw new UnauthorizedAccessException("Invalid refresh token or an old one");
+                throw new UnauthorizedAccessException("Invalid or expired refresh token");
             }
 
             var user = await _dbContext.Users.FindAsync(storedToken.UserId);
 
             if (user == null)
             {
-                throw new UnauthorizedAccessException("User not founs");
+                throw new UnauthorizedAccessException("User not found");
             }
 
             var roles = await _dbContext.UserRoles
