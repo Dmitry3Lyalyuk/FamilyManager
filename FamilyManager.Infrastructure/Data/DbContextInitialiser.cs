@@ -56,7 +56,6 @@ namespace FamilyManager.Infrastructure.Data
                         UserName = "admin123",
                         Email = adminEmail,
                         Status = Status.Individual,
-                        Role = "admin",
                         Country = Country.Turkey
 
                     };

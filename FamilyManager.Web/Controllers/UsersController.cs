@@ -34,7 +34,6 @@ namespace FamilyManager.Web.Controllers
             }
 
             return Ok(users);
-
         }
 
         /// <summary>

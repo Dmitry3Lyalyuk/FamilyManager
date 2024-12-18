@@ -26,7 +26,6 @@ namespace FamilyManager.Web.Controllers
             var user = new User()
             {
                 Status = model.Status,
-                Role = model.Role,
                 Country = model.Country,
                 UserName = model.UserName,
                 Email = model.Email
