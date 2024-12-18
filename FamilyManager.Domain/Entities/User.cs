@@ -1,17 +1,12 @@
-﻿using FamilyManager.Domain.Common;
-using FamilyManager.Domain.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using FamilyManager.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace FamilyManager.Domain.Entities
 {
-    public class User : BaseAuditableEntity
+    public class User : IdentityUser<Guid>
     {
-        public string UserName { get; set; }
-        public Status Status { get; init; }
+        public Status Status { get; set; }
         public string Role { get; set; }
         public Country Country { get; set; }
-
-        [EmailAddress]
-        public string Email { get; set; }
     }
 }

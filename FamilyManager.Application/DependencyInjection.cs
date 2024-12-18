@@ -17,6 +17,7 @@ namespace FamilyManager.Application
                     cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidatorBehaviour<,>));
                     cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionsBehaviour<,>));
                 });
+
             return services;
         }
     }

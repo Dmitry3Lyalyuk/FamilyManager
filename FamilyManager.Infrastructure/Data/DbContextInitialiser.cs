@@ -1,6 +1,8 @@
 ﻿using FamilyManager.Domain.Entities;
 using FamilyManager.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 namespace FamilyManager.Infrastructure.Data
@@ -8,9 +10,18 @@ namespace FamilyManager.Infrastructure.Data
     public class DbContextInitialiser
     {
         private readonly ApplicationDbContext _context;
-        public DbContextInitialiser(ApplicationDbContext context)
+        private readonly ILogger<DbContextInitialiser> _logger;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole<Guid>> _roleManager;
+        public DbContextInitialiser(ApplicationDbContext context,
+            ILogger<DbContextInitialiser> logger,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole<Guid>> roleManager)
         {
             _context = context;
+            _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public async Task InitialiseAsync()
         {
@@ -20,6 +31,7 @@ namespace FamilyManager.Infrastructure.Data
             }
             catch (Exception ex)
             {
+                _logger.LogError("An error occured while applying mirgation");
                 throw;
             }
         }
@@ -27,104 +39,46 @@ namespace FamilyManager.Infrastructure.Data
         {
             try
             {
-                var adminId = Guid.NewGuid();
-
-                if (!_context.Users.Any())
+                foreach (var roleName in Enum.GetNames(typeof(ApplicationRole)))
                 {
-
-                    _context.Users.AddRange(
-                        new User
-                        {
-                            Id = Guid.NewGuid(),
-                            UserName = "admin228",
-                            Status = Status.Individual,
-                            Role = "admin",
-                            Country = Country.Russia,
-                            Email = "admin@gmail.com",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = null,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = null
-                        },
-                        new User
-                        {
-                            Id = Guid.NewGuid(),
-                            UserName = "Tolik",
-                            Status = Status.Individual,
-                            Role = "explorer",
-                            Country = Country.Turkey,
-                            Email = "tolik@gmail.com",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = adminId,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = adminId
-                        },
-                         new User
-                         {
-                             Id = Guid.NewGuid(),
-                             UserName = "Dima",
-                             Status = Status.Individual,
-                             Role = "explorer",
-                             Country = Country.England,
-                             Email = "dimon@gmail.com",
-                             CreatedAt = DateTime.Now,
-                             CreatedBy = adminId,
-                             LastModifiedAt = DateTime.Now,
-                             LastModifiedBy = adminId
-                         },
-                          new User
-                          {
-                              Id = Guid.NewGuid(),
-                              UserName = "BlackDuck",
-                              Status = Status.Company,
-                              Role = "explorer",
-                              Country = Country.England,
-                              Email = "ru@gmail.com",
-                              CreatedAt = DateTime.Now,
-                              CreatedBy = adminId,
-                              LastModifiedAt = DateTime.Now,
-                              LastModifiedBy = adminId
-                          }
-                        );
+                    if (!await _roleManager.RoleExistsAsync(roleName))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole<Guid> { Name = roleName });
+                    }
                 }
+                var adminEmail = "NoN@admin.com";
+                var adminUser = await _userManager.FindByEmailAsync(adminEmail);
 
-                if (!_context.Families.Any())
+                if (adminUser == null)
                 {
-                    _context.Families.AddRange(
-                        new Family()
-                        {
-                            Id = Guid.NewGuid(),
-                            Category = Category.Wall,
-                            Brand = null,
-                            Name = "Base_wall",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = adminId,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = adminId
-                        },
-                        new Family()
-                        {
-                            Id = Guid.NewGuid(),
-                            Category = Category.Wall,
-                            Brand = null,
-                            Name = "Lightins bright",
-                            CreatedAt = DateTime.Now,
-                            CreatedBy = adminId,
-                            LastModifiedAt = DateTime.Now,
-                            LastModifiedBy = adminId
-                        }); ; ;
+                    adminUser = new User()
+                    {
+                        UserName = "admin123",
+                        Email = adminEmail,
+                        Status = Status.Individual,
+                        Role = "admin",
+                        Country = Country.Turkey
+
+                    };
+                    var result = await _userManager.CreateAsync(adminUser, "Admin123124!");
+
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(adminUser, ApplicationRole.Admin.ToString());
+                    }
+                    else
+                    {
+                        _logger.LogError("Admin creation failed");
+                    }
                 }
 
                 await _context.SaveChangesAsync();
-
             }
             catch
             {
+                _logger.LogError("An error occured while seeding the database");
                 throw;
             }
         }
-
-
     }
-
 }

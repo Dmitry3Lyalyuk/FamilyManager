@@ -23,7 +23,6 @@ namespace FamilyManager.Application.Users.Validators
             RuleFor(u => u.Email)
                  .NotEmpty().WithMessage("Email is required")
                  .EmailAddress().WithMessage("Email should have a valid email format.");
-
         }
         private async Task<bool> BeUniqueUserName(string username, CancellationToken cancellationToken)
         {

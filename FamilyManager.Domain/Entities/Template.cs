@@ -8,13 +8,9 @@ namespace FamilyManager.Domain.Entities
         public string Name { get; set; }
         public string? Description { get; set; }
         public Section Section { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
         public User User { get; set; }
         public Guid? FamilyId { get; set; }
-        //public Family? Family { get; set; }
-
-        public ICollection<Family> Families { get; set; } = [];
-
-
+        public Family Family { get; set; }
     }
 }

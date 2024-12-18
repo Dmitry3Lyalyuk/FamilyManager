@@ -14,7 +14,6 @@ namespace FamilyManager.Application.Common.Exceptions
             Errors = failures
                 .GroupBy(f => f.PropertyName, e => e.ErrorMessage)
                 .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
-
         }
     }
 }

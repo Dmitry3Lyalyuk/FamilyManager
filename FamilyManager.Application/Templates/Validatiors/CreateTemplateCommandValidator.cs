@@ -20,7 +20,11 @@ namespace FamilyManager.Application.Templates.Validatiors
             RuleFor(t => t.Section)
                  .IsInEnum().WithMessage("Section is requires");
 
+            RuleFor(t => t.FamilyId)
+                .NotEmpty().WithMessage("Family Id is required");
 
+            RuleFor(t => t.UserId)
+                .Must(id => id == null || id != Guid.Empty).WithMessage("Valid UserId is required");
         }
     }
 }

@@ -10,8 +10,9 @@ namespace FamilyManager.Application.Templates.Commands
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
         public Section Section { get; set; }
+        public Guid? UserId { get; set; }
+        public Guid FamilyId { get; set; }
     }
     public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateCommand, Guid>
     {
@@ -27,10 +28,9 @@ namespace FamilyManager.Application.Templates.Commands
             {
                 Name = request.Name,
                 Description = request.Description,
-                Section = Domain.Enums.Section.DefaultMetric
-
-
-                // Families=request.
+                Section = request.Section,
+                UserId = request.UserId,
+                FamilyId = request.FamilyId
             };
             _context.Templates.Add(template);
             await _context.SaveChangesAsync(cancellationToken);
@@ -38,4 +38,5 @@ namespace FamilyManager.Application.Templates.Commands
             return template.Id;
         }
     }
+
 }

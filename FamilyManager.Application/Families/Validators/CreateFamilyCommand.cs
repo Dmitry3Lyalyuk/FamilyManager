@@ -8,13 +8,11 @@ namespace FamilyManager.Application.Familys.Validations
         public CreateFamilyCommandValidator()
         {
             RuleFor(f => f.Name)
-                .MaximumLength(30)
                 .NotEmpty()
                 .WithMessage("Name is required.");
 
             RuleFor(f => f.Category)
                 .IsInEnum().WithMessage("Category is required");
-
         }
     }
 }

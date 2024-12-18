@@ -28,6 +28,7 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
             CancellationToken cancellationToken = default)
         {
             UpdateEntities(eventData.Context);
+
             return base.SavingChangesAsync(eventData, result, cancellationToken);
         }
 
@@ -43,7 +44,6 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
                     || entry.HasChangesOwnedEntities())
                 {
                     var utcNow = _dateTime.GetUtcNow();
-
                     var userId = _user.GetCurrentUser();
 
                     if (entry.State == EntityState.Added)
@@ -51,6 +51,7 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
                         entry.Entity.CreatedBy = userId;
                         entry.Entity.CreatedAt = utcNow.DateTime;
                     }
+
                     entry.Entity.LastModifiedBy = userId;
                     entry.Entity.LastModifiedAt = utcNow.DateTime;
                 }
@@ -67,6 +68,5 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
             r.TargetEntry.Metadata.IsOwned() &&
             (r.TargetEntry.State == EntityState.Added || r.TargetEntry.State == EntityState.Modified));
         }
-
     }
 }
