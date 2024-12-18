@@ -25,6 +25,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="200">Returns the list of families.</response>
         /// <response code="404">If no families are found.</response>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<FamilyDTO>>> GetAllFamilies()
         {
             var query = new GetAllFamiliesQuery();
@@ -46,6 +47,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="200">Returns the Id of the newly created family.</response>
         /// <response code="400">If the request is invalid.</response>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Guid>> CreateFamily([FromBody] CreateFamilyCommand command)
         {
             try
