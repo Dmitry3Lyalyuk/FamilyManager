@@ -17,8 +17,4 @@
     <ProjectReference Include="..\FamilyManager.Domain\FamilyManager.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="RegisterModels\Queries\" />
-  </ItemGroup>
-
 </Project>
