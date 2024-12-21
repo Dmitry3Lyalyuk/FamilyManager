@@ -8,6 +8,7 @@ namespace FamilyManager.Application.Common.Interfaces
         DbSet<User> Users { get; }
         DbSet<Family> Families { get; }
         DbSet<Template> Templates { get; }
+        DbSet<RegisterModel> RegisterModels { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

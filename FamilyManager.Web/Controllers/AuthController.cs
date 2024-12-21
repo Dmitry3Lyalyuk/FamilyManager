@@ -1,8 +1,8 @@
-﻿using FamilyManager.Domain.Entities;
-using FamilyManager.Domain.Enums;
-using FamilyManager.Infrastructure.Extensions;
+﻿using FamilyManager.Application.RegisterModels.Commands;
+using FamilyManager.Domain.Entities;
 using FamilyManager.Infrastructure.Identity;
 using FamilyManager.Web.Models;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,33 +14,32 @@ namespace FamilyManager.Web.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly TokenProvider _tokenProvider;
-        public AuthController(UserManager<User> userManager, TokenProvider tokenProvider)
+        private readonly IMediator _mediator;
+        public AuthController(UserManager<User> userManager, TokenProvider tokenProvider, IMediator mediator)
         {
             _userManager = userManager;
             _tokenProvider = tokenProvider;
+            _mediator = mediator;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<ActionResult<Guid>> Register([FromBody] CreateRegisterModelCommand model)
         {
-            var user = new User()
+            try
             {
-                Status = model.Status,
-                Country = model.Country,
-                UserName = model.UserName,
-                Email = model.Email
-            };
+                var registerModelId = await _mediator.Send(model);
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+                if (registerModelId == Guid.Empty)
+                {
+                    return BadRequest("An error occured!");
+                }
 
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
+                return Ok(registerModelId);
             }
-
-            await _userManager.AddToRoleAsync(user, ApplicationRole.User.ToIdentityRole());
-
-            return Ok(new { Massage = "User registred successfuly" });
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
         }
 
         [HttpPost("login")]

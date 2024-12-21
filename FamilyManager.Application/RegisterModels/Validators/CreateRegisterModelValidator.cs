@@ -1,15 +1,14 @@
-﻿using FamilyManager.Domain.Enums;
-using FamilyManager.Web.Models;
+﻿using FamilyManager.Application.RegisterModels.Commands;
 using FluentValidation;
 
 namespace FamilyManager.Web.Validators
 {
-    public class RegisterModelValidator : AbstractValidator<RegisterModel>
+    public class CreateRegisterModelValidator : AbstractValidator<CreateRegisterModelCommand>
     {
-        public RegisterModelValidator()
+        public CreateRegisterModelValidator()
         {
             RuleFor(s => s.Status)
-                .Must(value => Enum.IsDefined(typeof(Status), value)).WithMessage("Status is required. Choose one from list below.");
+                .IsInEnum().WithMessage("Status is required. Choose one from list below.");
 
             RuleFor(c => c.Country)
                 .IsInEnum().WithMessage("Country is required. Choose one from list below.");

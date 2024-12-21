@@ -17,6 +17,7 @@ namespace FamilyManager.Infrastructure.Data
         public DbSet<Family> Families { get; set; }
         public DbSet<Template> Templates { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<RegisterModel> RegisterModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

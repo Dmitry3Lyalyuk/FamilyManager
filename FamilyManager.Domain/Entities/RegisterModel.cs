@@ -1,9 +1,9 @@
-﻿using FamilyManager.Domain.Enums;
-using MediatR;
+﻿using FamilyManager.Domain.Common;
+using FamilyManager.Domain.Enums;
 
-namespace FamilyManager.Web.Models
+namespace FamilyManager.Domain.Entities
 {
-    public record RegisterModel : IRequest<Guid>
+    public class RegisterModel : BaseAuditableEntity
     {
         public Status Status { get; set; }
         public Country Country { get; set; }
