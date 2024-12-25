@@ -1,4 +1,5 @@
-﻿using FamilyManager.Web.Models;
+﻿using FamilyManager.Domain.Enums;
+using FamilyManager.Web.Models;
 using FluentValidation;
 
 namespace FamilyManager.Web.Validators
@@ -8,10 +9,7 @@ namespace FamilyManager.Web.Validators
         public RegisterModelValidator()
         {
             RuleFor(s => s.Status)
-                .IsInEnum().WithMessage("Status is required. Choose one from list below.");
-
-            RuleFor(r => r.Role)
-                .NotEmpty().WithMessage("Field is required");
+                .Must(value => Enum.IsDefined(typeof(Status), value)).WithMessage("Status is required. Choose one from list below.");
 
             RuleFor(c => c.Country)
                 .IsInEnum().WithMessage("Country is required. Choose one from list below.");
