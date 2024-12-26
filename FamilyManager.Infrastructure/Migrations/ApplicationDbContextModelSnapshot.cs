@@ -57,7 +57,7 @@ namespace FamilyManager.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Families");
+                    b.ToTable("Families", (string)null);
                 });
 
             modelBuilder.Entity("FamilyManager.Domain.Entities.RefreshToken", b =>
@@ -83,7 +83,7 @@ namespace FamilyManager.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("FamilyManager.Domain.Entities.Template", b =>
@@ -126,7 +126,7 @@ namespace FamilyManager.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Templates");
+                    b.ToTable("Templates", (string)null);
                 });
 
             modelBuilder.Entity("FamilyManager.Domain.Entities.User", b =>

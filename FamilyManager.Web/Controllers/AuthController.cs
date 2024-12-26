@@ -23,6 +23,7 @@ namespace FamilyManager.Web.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
+
             var user = new User()
             {
                 Status = model.Status,
@@ -32,6 +33,7 @@ namespace FamilyManager.Web.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
+
 
             if (!result.Succeeded)
             {
