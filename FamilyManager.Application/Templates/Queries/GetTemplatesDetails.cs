@@ -24,16 +24,16 @@ namespace FamilyManager.Application.Templates.Queries
                 .Select(t => new TemplatesDetailsDTO
                 {
                     Id = t.Id,
-
                     Description = t.Description,
                     Section = t.Section,
                     Familyname = t.Family.Name
-
                 }).FirstOrDefaultAsync(cancellationToken);
+
             if (tamplatedetails == null)
             {
                 throw new Exception($"Template with Id{request.Id} was not faund");
             }
+
             return tamplatedetails;
         }
     }

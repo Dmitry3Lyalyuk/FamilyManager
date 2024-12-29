@@ -2,7 +2,8 @@
 {
     public enum Status
     {
-        Individual, Company
+        Individual,
+        Company
     }
 }
 

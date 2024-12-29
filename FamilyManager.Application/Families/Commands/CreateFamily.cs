@@ -5,13 +5,13 @@ using MediatR;
 
 namespace FamilyManager.Application.Families.Commands
 {
-    public class CreateFamilyCommand : IRequest<Guid>
+    public record CreateFamilyCommand : IRequest<Guid>
     {
         public Category Category { get; set; }
         public string Name { get; set; }
         public string Brand { get; init; }
-        //public Guid? UserId { get; init; }
     }
+
     public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>
     {
         private readonly IApplicationDbContext _context;
@@ -26,7 +26,6 @@ namespace FamilyManager.Application.Families.Commands
                 Name = request.Name,
                 Category = request.Category,
                 Brand = request.Brand
-                //UserId = Guid.Parse("98ac7f7c-9788-4125-a728-06c8001b90a0")
             };
             _context.Families.Add(entity);
             await _context.SaveChangesAsync(cancellationToken);

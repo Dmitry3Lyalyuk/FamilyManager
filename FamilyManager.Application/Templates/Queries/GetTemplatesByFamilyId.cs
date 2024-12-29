@@ -32,7 +32,6 @@ namespace FamilyManager.Application.Templates.Queries
                         Name = t.Name,
                         Description = t.Description
                     }).ToListAsync(cancellationToken);
-
             }
         }
     }

@@ -24,7 +24,6 @@ namespace FamilyManager.Application.Users.Querries
                     UserName = u.UserName,
                     Email = u.Email
                 }).ToListAsync(cancellationToken);
-
         }
     }
 }

@@ -19,12 +19,14 @@ namespace FamilyManager.Web
             CancellationToken cancellationToken)
         {
             var exeptionType = exception.GetType();
+
             if (_exceptionHandlers.ContainsKey(exeptionType))
             {
                 await _exceptionHandlers[exeptionType].Invoke(httpContext, exception);
 
                 return true;
             }
+
             return false;
         }
         public async Task HanleValidationExeption(HttpContext httpContext, Exception ex)
@@ -36,9 +38,7 @@ namespace FamilyManager.Web
                 Title = ex.Message,
                 Status = StatusCodes.Status400BadRequest,
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
-
             });
         }
     }
-
 }
