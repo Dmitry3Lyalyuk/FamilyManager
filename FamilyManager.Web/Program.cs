@@ -1,13 +1,9 @@
 using FamilyManager.Application;
-using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Domain.Entities;
 using FamilyManager.Domain.Enums;
 using FamilyManager.Infrastructure.Data;
 using FamilyManager.Infrastructure.Identity;
 using FamilyManager.Web;
-using FamilyManager.Web.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -22,17 +18,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
-
-builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
-{
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 6;
-})
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddWebServices();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -54,10 +40,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 });
-
-builder.Services.AddExceptionHandler<CastomExceptionHandler>();
-builder.Services.AddScoped<IUser, CurrentUserService>();
-builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<TokenProvider>();
 
