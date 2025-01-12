@@ -51,7 +51,19 @@ builder.Services.AddAuthorization(options =>
     }
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontendApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowFrontendApp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

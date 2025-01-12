@@ -22,6 +22,7 @@ namespace FamilyManager.Application.Users.Querries
                 {
                     Id = u.Id,
                     UserName = u.UserName,
+                    Country = u.Country,
                     Email = u.Email
                 }).ToListAsync(cancellationToken);
         }
