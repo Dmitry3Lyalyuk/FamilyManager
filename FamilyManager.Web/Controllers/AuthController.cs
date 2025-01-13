@@ -81,16 +81,9 @@ namespace FamilyManager.Web.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenModel model)
         {
-            try
-            {
                 var (newJwtToken, newRefreshToken) = await _tokenProvider.RefreshTokens(model.RefreshToken);
 
                 return Ok(new { Token = newJwtToken, RefreshToken = newRefreshToken });
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(new { Error = ex.Message });
-            }
         }
     }
 }

@@ -3,6 +3,7 @@ using FamilyManager.Domain.Enums;
 using FamilyManager.Infrastructure.Data;
 using FamilyManager.Infrastructure.Identity;
 using FamilyManager.Web;
+using FamilyManager.Web.Filter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -11,7 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+    {
+        options.Filters.Add<ExceptionFilter>();
+    }); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

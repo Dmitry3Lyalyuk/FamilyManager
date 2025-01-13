@@ -50,8 +50,6 @@ namespace FamilyManager.Web.Controllers
         [Authorize]
         public async Task<ActionResult<Guid>> CreateFamily([FromBody] CreateFamilyCommand command)
         {
-            try
-            {
                 var familyId = await _mediator.Send(command);
 
                 if (familyId == Guid.Empty)
@@ -60,11 +58,6 @@ namespace FamilyManager.Web.Controllers
                 }
 
                 return Ok(familyId);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
         }
 
         /// <summary>
@@ -98,20 +91,9 @@ namespace FamilyManager.Web.Controllers
             {
                 return BadRequest("Family Id in URL doesn't match in request body");
             }
-            try
-            {
                 await _mediator.Send(command);
 
                 return NoContent();
-            }
-            catch (Exception ex) when (ex.Message.Contains("was not found"))
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
     }
 }

@@ -46,17 +46,9 @@ namespace FamilyManager.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTemplate([FromBody] CreateTemplateCommand command)
         {
-            try
-            {
-                var templateId = await _mediator.Send(command);
+            var templateId = await _mediator.Send(command);
 
-                return Ok(templateId);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
+            return Ok(templateId);
         }
 
         /// <summary>
@@ -74,18 +66,9 @@ namespace FamilyManager.Web.Controllers
             {
                 return BadRequest("Tempalte Id in URL does not match Id in request body.");
             }
-
-            try
-            {
                 await _mediator.Send(command);
 
                 return NoContent();
-            }
-            catch (Exception ex) when (ex.Message.Contains("was not found"))
-            {
-                return NotFound(ex.Message);
-            }
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FamilyManager.Application.Users.Commands;
 using FamilyManager.Application.Users.Querries;
+using FamilyManager.Web.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,26 +60,18 @@ namespace FamilyManager.Web.Controllers
         /// <response code="204">User successfully updated.</response>
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UserApdate(Guid id, [FromBody] UpdateUserCommand command)
+        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserUpdateRequest request)
         {
-            if (id != command.Id)
+            var command = new UserUpdateRequest
             {
-                return BadRequest("User Id in URL doesn't match Id in request body");
-            }
-            try
-            {
+                UserName = request.UserName,
+                Country=request.Country,
+                Email=request.Email
+            };
+            
                 await _mediator.Send(command);
 
                 return NoContent();
-            }
-            catch (Exception ex) when (ex.Message.Contains("was not found"))
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
     }
 }
