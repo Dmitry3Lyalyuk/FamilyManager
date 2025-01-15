@@ -69,7 +69,7 @@ namespace FamilyManager.Web.Controllers
                 Email=request.Email
             };
             
-                await _mediator.Send(command);
+                await _mediator.Send(command);  
 
                 return NoContent();
         }

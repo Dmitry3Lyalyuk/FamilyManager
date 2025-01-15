@@ -25,7 +25,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="200">Returns the list of families.</response>
         /// <response code="404">If no families are found.</response>
         [HttpGet]
-        [Authorize]
+       // [Authorize]
         public async Task<ActionResult<List<FamilyDTO>>> GetAllFamilies()
         {
             var query = new GetAllFamiliesQuery();
@@ -47,7 +47,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="200">Returns the Id of the newly created family.</response>
         /// <response code="400">If the request is invalid.</response>
         [HttpPost]
-        [Authorize]
+        // [Authorize]
         public async Task<ActionResult<Guid>> CreateFamily([FromBody] CreateFamilyCommand command)
         {
                 var familyId = await _mediator.Send(command);
@@ -67,7 +67,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="204">Family successfully deleted.</response>
         /// <response code="404">If the family is not found.</response>
         [HttpDelete("{id:guid}")]
-        [Authorize]
+        // [Authorize]
         public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteFamilyCommand(id);
@@ -84,7 +84,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="204">Family successfully updated.</response>
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         [HttpPut("{id:guid}")]
-        [Authorize]
+       // [Authorize]
         public async Task<IActionResult> FamilyUpdate(Guid id, [FromBody] UpdateFamilyCommand command)
         {
             if (id != command.Id)

@@ -20,7 +20,9 @@ namespace FamilyManager.Application.Families.Querries
                 .Select(f => new FamilyDTO
                 {
                     Id = f.Id,
-                    Name = f.Name
+                    Name = f.Name,
+                    Category = f.Category,
+                    Brand=f.Brand
                 }).ToListAsync(cancellationToken);
         }
     }
