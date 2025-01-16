@@ -62,9 +62,9 @@ namespace FamilyManager.Web.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserUpdateRequest request)
         {
-            var command = new UserUpdateRequest
+            var command = new UpdateUserCommand
             {
-                UserName = request.UserName,
+                Id = id,
                 Country=request.Country,
                 Email=request.Email
             };
