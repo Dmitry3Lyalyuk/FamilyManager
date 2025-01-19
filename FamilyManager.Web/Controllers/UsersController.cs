@@ -65,13 +65,13 @@ namespace FamilyManager.Web.Controllers
             var command = new UpdateUserCommand
             {
                 Id = id,
-                Country=request.Country,
-                Email=request.Email
+                Country = request.Country,
+                Email = request.Email
             };
-            
-                await _mediator.Send(command);  
 
-                return NoContent();
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

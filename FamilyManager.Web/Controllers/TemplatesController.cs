@@ -1,5 +1,6 @@
 ﻿using FamilyManager.Application.Templates.Commands;
 using FamilyManager.Application.Templates.Queries;
+using FamilyManager.Web.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,15 +61,18 @@ namespace FamilyManager.Web.Controllers
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         /// <response code="404">If the template is not found.</response>
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateTemplate(Guid id, [FromBody] UpdateTemplateCommand command)
+        public async Task<IActionResult> UpdateTemplate(Guid id, [FromBody] TemplateUpdateRequestcs request)
         {
-            if (id != command.TemplateId)
+            var command = new UpdateTemplateCommand()
             {
-                return BadRequest("Tempalte Id in URL does not match Id in request body.");
-            }
-                await _mediator.Send(command);
+                TemplateId = id,
 
-                return NoContent();
+                Name = request.Name,
+                Description = request.Description
+            };
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

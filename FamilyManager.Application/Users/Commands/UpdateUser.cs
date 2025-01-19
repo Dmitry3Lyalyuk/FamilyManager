@@ -1,6 +1,9 @@
-﻿using FamilyManager.Application.Common.Interfaces;
+﻿using FamilyManager.Application.Common.Exceptions;
+using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Domain.Enums;
+using FluentValidation.Results;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Application.Users.Commands
 {
@@ -23,9 +26,17 @@ namespace FamilyManager.Application.Users.Commands
         {
             var entity = await _context.Users.FindAsync([request.Id], cancellationToken);
 
-            if (entity == null)
+            if (entity.Email != request.Email)
             {
-                throw new Exception($"Entity with Id={request.Id} was not found.");
+                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email,
+                    cancellationToken);
+
+                if (existingUser != null)
+                {
+                    var validationFailure = new ValidationFailure("Email", "Email is already taken by another user.");
+
+                    throw new ValidationException([validationFailure]);
+                }
             }
 
             entity.Country = request.Country;
