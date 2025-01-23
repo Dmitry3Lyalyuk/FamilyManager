@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FamilyManager.Application\FamilyManager.Application.csproj" />
     <ProjectReference Include="..\FamilyManager.Infrastructure\FamilyManager.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -9,7 +9,7 @@ namespace FamilyManager.Application.Families.Commands
     {
         public Category Category { get; set; }
         public string Name { get; set; }
-        public string Brand { get; init; }
+        public string Brand { get; set; }   
     }
 
     public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>

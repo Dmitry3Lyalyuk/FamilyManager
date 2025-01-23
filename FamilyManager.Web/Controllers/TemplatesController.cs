@@ -1,5 +1,6 @@
 ﻿using FamilyManager.Application.Templates.Commands;
 using FamilyManager.Application.Templates.Queries;
+using FamilyManager.Web.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,17 +47,9 @@ namespace FamilyManager.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTemplate([FromBody] CreateTemplateCommand command)
         {
-            try
-            {
-                var templateId = await _mediator.Send(command);
+            var templateId = await _mediator.Send(command);
 
-                return Ok(templateId);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
+            return Ok(templateId);
         }
 
         /// <summary>
@@ -68,24 +61,18 @@ namespace FamilyManager.Web.Controllers
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         /// <response code="404">If the template is not found.</response>
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateTemplate(Guid id, [FromBody] UpdateTemplateCommand command)
+        public async Task<IActionResult> UpdateTemplate(Guid id, [FromBody] TemplateUpdateRequestcs request)
         {
-            if (id != command.TemplateId)
+            var command = new UpdateTemplateCommand()
             {
-                return BadRequest("Tempalte Id in URL does not match Id in request body.");
-            }
+                TemplateId = id,
 
-            try
-            {
-                await _mediator.Send(command);
+                Name = request.Name,
+                Description = request.Description
+            };
+            await _mediator.Send(command);
 
-                return NoContent();
-            }
-            catch (Exception ex) when (ex.Message.Contains("was not found"))
-            {
-                return NotFound(ex.Message);
-            }
+            return NoContent();
         }
-
     }
 }
