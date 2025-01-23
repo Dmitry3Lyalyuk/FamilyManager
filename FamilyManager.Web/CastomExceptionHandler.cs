@@ -11,7 +11,7 @@ namespace FamilyManager.Web
         {
             _exceptionHandlers = new()
             {
-                {typeof(ValidationExeption), HanleValidationExeption }
+                {typeof(ValidationException), HanleValidationExeption }
             };
         }
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext,
@@ -31,7 +31,7 @@ namespace FamilyManager.Web
         }
         public async Task HanleValidationExeption(HttpContext httpContext, Exception ex)
         {
-            var exception = (ValidationExeption)ex;
+            var exception = (ValidationException)ex;
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             await httpContext.Response.WriteAsJsonAsync(new ValidationProblemDetails(exception.Errors)
             {

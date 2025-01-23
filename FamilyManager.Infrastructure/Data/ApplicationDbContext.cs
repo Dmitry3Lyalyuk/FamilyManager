@@ -31,13 +31,13 @@ namespace FamilyManager.Infrastructure.Data
                 .HasOne(u => u.User)
                 .WithMany()
                 .HasForeignKey(u => u.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Family>()
                 .HasOne(u => u.User)
                 .WithMany()
                 .HasForeignKey(u => u.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<RefreshToken>()
                 .HasIndex(rt => rt.Token)

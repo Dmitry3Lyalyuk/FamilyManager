@@ -23,6 +23,15 @@ namespace FamilyManager.Web.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
+            if (!Enum.IsDefined(typeof(Status), model.Status))
+            {
+                return BadRequest($"{model.Status} is incorrect Status");
+            }
+
+            if (!Enum.IsDefined(typeof(Country), model.Country))
+            {
+                return BadRequest($"{model.Country} is incorrect Country");
+            }
 
             var user = new User()
             {
@@ -72,16 +81,9 @@ namespace FamilyManager.Web.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenModel model)
         {
-            try
-            {
                 var (newJwtToken, newRefreshToken) = await _tokenProvider.RefreshTokens(model.RefreshToken);
 
                 return Ok(new { Token = newJwtToken, RefreshToken = newRefreshToken });
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(new { Error = ex.Message });
-            }
         }
     }
 }

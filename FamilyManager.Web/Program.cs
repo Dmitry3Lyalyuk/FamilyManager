@@ -1,38 +1,32 @@
 using FamilyManager.Application;
-using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Domain.Entities;
 using FamilyManager.Domain.Enums;
 using FamilyManager.Infrastructure.Data;
 using FamilyManager.Infrastructure.Identity;
 using FamilyManager.Web;
-using FamilyManager.Web.Services;
+using FamilyManager.Web.Filter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+    {
+        options.Filters.Add<ExceptionFilter>();
+    }).AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
-
-builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
-{
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 6;
-})
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddWebServices();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -55,10 +49,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddExceptionHandler<CastomExceptionHandler>();
-builder.Services.AddScoped<IUser, CurrentUserService>();
-builder.Services.AddHttpContextAccessor();
-
 builder.Services.AddScoped<TokenProvider>();
 
 builder.Services.AddAuthorization(options =>
@@ -69,7 +59,19 @@ builder.Services.AddAuthorization(options =>
     }
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontendApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowFrontendApp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
