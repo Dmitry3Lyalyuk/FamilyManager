@@ -43,7 +43,7 @@ namespace FamilyManager.Web.Controllers
         /// <param name="id">The Id of the user to delete.</param>
         /// <response code="204">User successfully deleted.</response>
         /// <response code="404">If the user is not found.</response>
-        [HttpDelete]
+        [HttpDelete("{id:guid}")]
         public async Task<ActionResult> DeleteUser(Guid id)
         {
             var command = new DeleteUserCommand(id);
