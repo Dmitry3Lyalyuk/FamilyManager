@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
-using FamilyManager.Application.Common.Exceptions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Expressions;
-
-
 
 namespace FamilyManager.Web.Filter
 {
@@ -18,7 +13,7 @@ namespace FamilyManager.Web.Filter
                 Application.Common.Exceptions.ValidationException => (int)HttpStatusCode.BadRequest,
                 KeyNotFoundException => (int)HttpStatusCode.NotFound,
 
-                _ =>(int)HttpStatusCode.InternalServerError
+                _ => (int)HttpStatusCode.InternalServerError
             };
 
             var response = new
@@ -32,9 +27,9 @@ namespace FamilyManager.Web.Filter
 
             context.Result = new JsonResult(response)
             {
-                StatusCode =statusCode
+                StatusCode = statusCode
             };
-             context.ExceptionHandled = true;
+            context.ExceptionHandled = true;
         }
     }
 }
