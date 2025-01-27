@@ -2,7 +2,7 @@
 using FamilyManager.Application.Familys.Commands;
 using FluentValidation;
 
-namespace FamilyManager.Application.Familys.Validators
+namespace FamilyManager.Application.Familys.Validators //Не совпадает со структурой папок, Families
 {
     public class UpdateFamilyCommandValidator : AbstractValidator<UpdateFamilyCommand>
     {

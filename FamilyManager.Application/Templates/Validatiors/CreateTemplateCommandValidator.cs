@@ -6,7 +6,7 @@ namespace FamilyManager.Application.Templates.Validatiors
 {
     public class CreateTemplateCommandValidator : AbstractValidator<CreateTemplateCommand>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly IApplicationDbContext _context; //В этом валидаторе не используется контекст
         public CreateTemplateCommandValidator(IApplicationDbContext context)
         {
             _context = context;

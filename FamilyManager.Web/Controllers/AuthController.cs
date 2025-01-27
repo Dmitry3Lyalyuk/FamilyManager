@@ -63,6 +63,7 @@ namespace FamilyManager.Web.Controllers
             {
                 return Unauthorized();
             }
+
             var isValidPassword = await _userManager.CheckPasswordAsync(user, model.Password);
 
             if (!isValidPassword)
@@ -81,9 +82,9 @@ namespace FamilyManager.Web.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenModel model)
         {
-                var (newJwtToken, newRefreshToken) = await _tokenProvider.RefreshTokens(model.RefreshToken);
+            var (newJwtToken, newRefreshToken) = await _tokenProvider.RefreshTokens(model.RefreshToken);
 
-                return Ok(new { Token = newJwtToken, RefreshToken = newRefreshToken });
+            return Ok(new { Token = newJwtToken, RefreshToken = newRefreshToken });
         }
     }
 }

@@ -25,7 +25,7 @@ namespace FamilyManager.Application.Users.Commands
         public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Users.FindAsync([request.Id], cancellationToken);
-
+            //Что если entity не была найдена?
             if (entity.Email != request.Email)
             {
                 var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email,

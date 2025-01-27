@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 
-namespace FamilyManager.Infrastructure.Data.Interseptors
+namespace FamilyManager.Infrastructure.Data.Interseptors //interCeptors
 {
     public class AuditableEntityInterceptor : SaveChangesInterceptor
     {
@@ -23,6 +23,7 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
 
             return base.SavingChanges(eventData, result);
         }
+
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
             InterceptionResult<int> result,
             CancellationToken cancellationToken = default)
@@ -38,6 +39,7 @@ namespace FamilyManager.Infrastructure.Data.Interseptors
             {
                 return;
             }
+
             foreach (var entry in context.ChangeTracker.Entries<BaseAuditableEntity>())
             {
                 if (entry.State is EntityState.Added or EntityState.Modified

@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace FamilyManager.Web.Services
 {
-    public class CurrentUserService : IUser
+    public class CurrentUserService : IUser //Название файла не совпадает с названием класса
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 

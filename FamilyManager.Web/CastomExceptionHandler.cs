@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyManager.Web
 {
-    public class CastomExceptionHandler : IExceptionHandler
+    public class CastomExceptionHandler : IExceptionHandler //CustomExceptionHandler
     {
         private readonly Dictionary<Type, Func<HttpContext, Exception, Task>> _exceptionHandlers;
         public CastomExceptionHandler()

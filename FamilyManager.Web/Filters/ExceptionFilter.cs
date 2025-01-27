@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
 
-namespace FamilyManager.Web.Filter
+namespace FamilyManager.Web.Filter //Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {
@@ -21,14 +21,15 @@ namespace FamilyManager.Web.Filter
                 StatusCode = statusCode,
                 Messange = context.Exception.Message,
                 Errors = context.Exception is Application.Common.Exceptions.ValidationException validationException
-           ? validationException.Errors
-           : null
+                   ? validationException.Errors
+                   : null
             };
 
             context.Result = new JsonResult(response)
             {
                 StatusCode = statusCode
             };
+
             context.ExceptionHandled = true;
         }
     }

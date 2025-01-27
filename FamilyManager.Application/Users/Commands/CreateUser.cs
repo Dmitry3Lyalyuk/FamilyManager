@@ -6,13 +6,14 @@ using MediatR;
 
 namespace FamilyManager.Application.Users.Commands
 {
-    public record CreateUserCommand : IRequest <Guid>
+    public record CreateUserCommand : IRequest<Guid>
     {
         public string UserName { get; set; }
         public Status Status { get; init; }
         public Country Country { get; set; }
         public string Email { get; set; }
     }
+
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
     {
         private readonly IApplicationDbContext _context;
@@ -22,6 +23,7 @@ namespace FamilyManager.Application.Users.Commands
             _context = context;
             _validator = validator;
         }
+
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var entity = new User

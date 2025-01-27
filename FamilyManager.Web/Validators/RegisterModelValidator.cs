@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace FamilyManager.Web.Validators
 {
-    public class RegisterModelValidator : AbstractValidator<RegisterModel>
+    public class RegisterModelValidator : AbstractValidator<RegisterModel> //Этот валидатор не используется?
     {
         public RegisterModelValidator()
         {

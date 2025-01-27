@@ -14,6 +14,7 @@ namespace FamilyManager.Application.Templates.Commands
         public Guid? UserId { get; set; }
         public Guid FamilyId { get; set; }
     }
+
     public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateCommand, Guid>
     {
         private readonly IApplicationDbContext _context;
@@ -32,6 +33,7 @@ namespace FamilyManager.Application.Templates.Commands
                 UserId = request.UserId,
                 FamilyId = request.FamilyId
             };
+
             _context.Templates.Add(template);
             await _context.SaveChangesAsync(cancellationToken);
 

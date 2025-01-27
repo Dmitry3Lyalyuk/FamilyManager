@@ -9,6 +9,7 @@ namespace FamilyManager.Application.Templates.Queries
     {
         public Guid Id { get; set; }
     }
+
     public class GetTemplatesDetailsQueryHandler : IRequestHandler<GetTemplatesDetailsQuery, TemplatesDetailsDTO>
     {
         private readonly IApplicationDbContext _context;
@@ -16,10 +17,11 @@ namespace FamilyManager.Application.Templates.Queries
         {
             _context = context;
         }
+
         public async Task<TemplatesDetailsDTO> Handle(GetTemplatesDetailsQuery request,
             CancellationToken cancellationToken)
         {
-            var tamplatedetails = await _context.Templates
+            var tamplatedetails = await _context.Templates //templateDetails
                 .Where(t => t.Id == request.Id)
                 .Select(t => new TemplatesDetailsDTO
                 {
@@ -31,7 +33,7 @@ namespace FamilyManager.Application.Templates.Queries
 
             if (tamplatedetails == null)
             {
-                throw new Exception($"Template with Id{request.Id} was not faund");
+                throw new Exception($"Template with Id{request.Id} was not faund"); //found
             }
 
             return tamplatedetails;

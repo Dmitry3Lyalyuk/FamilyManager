@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Application.Templates.Queries
 {
-    public record GetTemplatesByFamilyIdQueris : IRequest<List<TemplateDTO>>
+    public record GetTemplatesByFamilyIdQueris : IRequest<List<TemplateDTO>> //GetTemplatesByFamilyIdQuery
     {
         public Guid FamilyId { get; set; }
         public GetTemplatesByFamilyIdQueris(Guid familyId)
         {
             FamilyId = familyId;
         }
+
         public class GetTemplatesByFamilyIdQueryHandler : IRequestHandler<GetTemplatesByFamilyIdQueris, List<TemplateDTO>>
         {
             private readonly IApplicationDbContext _context;

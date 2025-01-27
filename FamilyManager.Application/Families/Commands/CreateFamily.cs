@@ -9,7 +9,7 @@ namespace FamilyManager.Application.Families.Commands
     {
         public Category Category { get; set; }
         public string Name { get; set; }
-        public string Brand { get; set; }   
+        public string Brand { get; set; }
     }
 
     public class CreateFamilyCommandHandler : IRequestHandler<CreateFamilyCommand, Guid>
@@ -19,6 +19,7 @@ namespace FamilyManager.Application.Families.Commands
         {
             _context = context;
         }
+
         public async Task<Guid> Handle(CreateFamilyCommand request, CancellationToken cancellationToken)
         {
             var entity = new Family
@@ -27,6 +28,7 @@ namespace FamilyManager.Application.Families.Commands
                 Category = request.Category,
                 Brand = request.Brand
             };
+
             _context.Families.Add(entity);
             await _context.SaveChangesAsync(cancellationToken);
 

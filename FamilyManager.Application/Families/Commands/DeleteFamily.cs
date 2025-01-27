@@ -1,7 +1,7 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using MediatR;
 
-namespace FamilyManager.Application.Familys.Commands
+namespace FamilyManager.Application.Familys.Commands //Не совпадает со структурой папок, Families
 {
     public record DeleteFamilyCommand(Guid Id) : IRequest;
 

@@ -68,7 +68,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="404">If the family is not found.</response>
         [HttpDelete("{id:guid}")]
         // [Authorize]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(Guid id) //DeleteFamily
         {
             var command = new DeleteFamilyCommand(id);
             await _mediator.Send(command);
@@ -85,7 +85,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         [HttpPut("{id:guid}")]
         // [Authorize]
-        public async Task<IActionResult> FamilyUpdate(Guid id, [FromBody] FamilyUpdateRequest request)
+        public async Task<IActionResult> FamilyUpdate(Guid id, [FromBody] FamilyUpdateRequest request) //UpdateFamily
         {
 
             var command = new UpdateFamilyCommand()

@@ -4,25 +4,26 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-
 namespace FamilyManager.Infrastructure.Data
 {
     public class DbContextInitialiser
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<DbContextInitialiser> _logger;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
+        private readonly ILogger<DbContextInitialiser> _logger;
+
         public DbContextInitialiser(ApplicationDbContext context,
-            ILogger<DbContextInitialiser> logger,
             UserManager<User> userManager,
-            RoleManager<IdentityRole<Guid>> roleManager)
+            RoleManager<IdentityRole<Guid>> roleManager,
+            ILogger<DbContextInitialiser> logger)
         {
             _context = context;
             _logger = logger;
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
         public async Task InitialiseAsync()
         {
             try
@@ -32,7 +33,7 @@ namespace FamilyManager.Infrastructure.Data
             catch (Exception ex)
             {
                 _logger.LogError("An error occured while applying mirgation");
-                throw;
+                throw; //Лучше не выкидывать "ничего", укажи конкретный эксепшен
             }
         }
         public async Task SeedAsync()
@@ -46,6 +47,7 @@ namespace FamilyManager.Infrastructure.Data
                         await _roleManager.CreateAsync(new IdentityRole<Guid> { Name = roleName });
                     }
                 }
+
                 var adminEmail = "NoN@admin.com";
                 var adminUser = await _userManager.FindByEmailAsync(adminEmail);
 
@@ -76,7 +78,7 @@ namespace FamilyManager.Infrastructure.Data
             catch
             {
                 _logger.LogError("An error occured while seeding the database");
-                throw;
+                throw; //Лучше не выкидывать "ничего", укажи конкретный эксепшен
             }
         }
     }
