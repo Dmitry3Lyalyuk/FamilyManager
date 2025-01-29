@@ -9,6 +9,7 @@ namespace FamilyManager.Application.Templates.Commands
         public string Name { get; set; }
         public string Description { get; set; }
     }
+
     public class UpdateTemplateCommandHandler : IRequestHandler<UpdateTemplateCommand>
     {
         private readonly IApplicationDbContext _context;

@@ -10,13 +10,15 @@ namespace FamilyManager.Infrastructure.Data
     public class DbContextInitialiser
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<DbContextInitialiser> _logger;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
+        private readonly ILogger<DbContextInitialiser> _logger;
+
         public DbContextInitialiser(ApplicationDbContext context,
-            ILogger<DbContextInitialiser> logger,
             UserManager<User> userManager,
-            RoleManager<IdentityRole<Guid>> roleManager)
+            RoleManager<IdentityRole<Guid>> roleManager,
+            ILogger<DbContextInitialiser> logger
+            )
         {
             _context = context;
             _logger = logger;
@@ -32,9 +34,10 @@ namespace FamilyManager.Infrastructure.Data
             catch (Exception ex)
             {
                 _logger.LogError("An error occured while applying mirgation");
-                throw;
+                throw new Exception("An error occured while applying mirgation");
             }
         }
+
         public async Task SeedAsync()
         {
             try
@@ -73,10 +76,10 @@ namespace FamilyManager.Infrastructure.Data
 
                 await _context.SaveChangesAsync();
             }
-            catch
+            catch (Exception ex)
             {
                 _logger.LogError("An error occured while seeding the database");
-                throw;
+                throw new Exception ("An error occured while seeding the database");
             }
         }
     }

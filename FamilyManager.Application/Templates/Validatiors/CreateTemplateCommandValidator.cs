@@ -6,11 +6,9 @@ namespace FamilyManager.Application.Templates.Validatiors
 {
     public class CreateTemplateCommandValidator : AbstractValidator<CreateTemplateCommand>
     {
-        private readonly IApplicationDbContext _context;
-        public CreateTemplateCommandValidator(IApplicationDbContext context)
+        public CreateTemplateCommandValidator()
         {
-            _context = context;
-
+            
             RuleFor(t => t.Name)
                 .NotEmpty().WithMessage("Name is required.");
 

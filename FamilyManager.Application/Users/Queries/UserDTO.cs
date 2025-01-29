@@ -1,6 +1,6 @@
 ﻿using FamilyManager.Domain.Enums;
 
-namespace FamilyManager.Application.Users.Querries
+namespace FamilyManager.Application.Users.Queries
 {
     public class UserDTO
     {

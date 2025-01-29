@@ -6,7 +6,7 @@ using MediatR;
 
 namespace FamilyManager.Application.Users.Commands
 {
-    public record CreateUserCommand : IRequest <Guid>
+    public record CreateUserCommand : IRequest<Guid>
     {
         public string UserName { get; set; }
         public Status Status { get; init; }

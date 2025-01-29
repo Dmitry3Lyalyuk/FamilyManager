@@ -19,6 +19,7 @@ namespace FamilyManager.Application.Families.Commands
         {
             _context = context;
         }
+
         public async Task<Guid> Handle(CreateFamilyCommand request, CancellationToken cancellationToken)
         {
             var entity = new Family
@@ -27,6 +28,7 @@ namespace FamilyManager.Application.Families.Commands
                 Category = request.Category,
                 Brand = request.Brand
             };
+
             _context.Families.Add(entity);
             await _context.SaveChangesAsync(cancellationToken);
 

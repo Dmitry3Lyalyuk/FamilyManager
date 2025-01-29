@@ -1,8 +1,8 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Application.Familys.Commands;
+using FamilyManager.Application.Families.Commands;
 using FluentValidation;
 
-namespace FamilyManager.Application.Familys.Validators
+namespace FamilyManager.Application.Families.Validators
 {
     public class UpdateFamilyCommandValidator : AbstractValidator<UpdateFamilyCommand>
     {

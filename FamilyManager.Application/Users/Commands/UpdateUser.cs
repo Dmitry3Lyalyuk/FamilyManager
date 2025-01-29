@@ -26,6 +26,11 @@ namespace FamilyManager.Application.Users.Commands
         {
             var entity = await _context.Users.FindAsync([request.Id], cancellationToken);
 
+            if (entity is null)
+            {
+                throw new ValidationException(new[] { new ValidationFailure("Id", $"User with id {request.Id} not found") });
+            }
+
             if (entity.Email != request.Email)
             {
                 var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email,
@@ -37,12 +42,12 @@ namespace FamilyManager.Application.Users.Commands
 
                     throw new ValidationException([validationFailure]);
                 }
-            }
-
+            } 
+            
             entity.Country = request.Country;
             entity.Email = request.Email;
 
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
-}
+} 

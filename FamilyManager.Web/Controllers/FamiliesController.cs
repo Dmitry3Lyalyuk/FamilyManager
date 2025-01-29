@@ -1,6 +1,5 @@
 ﻿using FamilyManager.Application.Families.Commands;
-using FamilyManager.Application.Families.Querries;
-using FamilyManager.Application.Familys.Commands;
+using FamilyManager.Application.Families.Queries;
 using FamilyManager.Web.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

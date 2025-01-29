@@ -1,7 +1,7 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using MediatR;
 
-namespace FamilyManager.Application.Familys.Commands
+namespace FamilyManager.Application.Families.Commands
 {
     public record UpdateFamilyCommand : IRequest
     {
