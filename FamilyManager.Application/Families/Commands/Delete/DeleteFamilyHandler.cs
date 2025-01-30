@@ -1,10 +1,8 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using MediatR;
 
-namespace FamilyManager.Application.Familys.Commands
+namespace FamilyManager.Application.Families.Commands.Delete
 {
-    public record DeleteFamilyCommand(Guid Id) : IRequest;
-
     public class DeleteFalilyCommandHandler : IRequestHandler<DeleteFamilyCommand>
     {
         private readonly IApplicationDbContext _context;

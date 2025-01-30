@@ -21,7 +21,7 @@ namespace FamilyManager.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddExceptionHandler<CastomExceptionHandler>();
+            services.AddExceptionHandler<CustomExceptionHandler>();
             services.AddScoped<IUser, CurrentUserService>();
             services.AddHttpContextAccessor();
 

@@ -3,8 +3,6 @@ using MediatR;
 
 namespace FamilyManager.Application.Users.Commands
 {
-    public record DeleteUserCommand(Guid Id) : IRequest;
-
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
     {
         private readonly IApplicationDbContext _context;

@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyManager.Web
 {
-    public class CastomExceptionHandler : IExceptionHandler
+    public class CustomExceptionHandler : IExceptionHandler
     {
         private readonly Dictionary<Type, Func<HttpContext, Exception, Task>> _exceptionHandlers;
-        public CastomExceptionHandler()
+        public CustomExceptionHandler()
         {
             _exceptionHandlers = new()
             {

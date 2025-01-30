@@ -1,6 +1,7 @@
-﻿using FamilyManager.Application.Families.Commands;
-using FamilyManager.Application.Families.Querries;
-using FamilyManager.Application.Familys.Commands;
+﻿using FamilyManager.Application.Families.Commands.Create;
+using FamilyManager.Application.Families.Commands.Delete;
+using FamilyManager.Application.Families.Commands.Update;
+using FamilyManager.Application.Families.Queries;
 using FamilyManager.Web.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -68,7 +69,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="404">If the family is not found.</response>
         [HttpDelete("{id:guid}")]
         // [Authorize]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> DeleteFamily(Guid id)
         {
             var command = new DeleteFamilyCommand(id);
             await _mediator.Send(command);
@@ -85,7 +86,7 @@ namespace FamilyManager.Web.Controllers
         /// <response code="400">If the request is invalid or Ids do not match.</response>
         [HttpPut("{id:guid}")]
         // [Authorize]
-        public async Task<IActionResult> FamilyUpdate(Guid id, [FromBody] FamilyUpdateRequest request)
+        public async Task<IActionResult> UpdateFamily(Guid id, [FromBody] FamilyUpdateRequest request)
         {
 
             var command = new UpdateFamilyCommand()

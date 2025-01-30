@@ -1,15 +1,8 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using MediatR;
 
-namespace FamilyManager.Application.Familys.Commands
+namespace FamilyManager.Application.Families.Commands.Update
 {
-    public record UpdateFamilyCommand : IRequest
-    {
-        public Guid Id { get; init; }
-        public string Brand { get; init; }
-        public string Name { get; init; }
-    }
-
     public class UpdateFamilyCommandHandler : IRequestHandler<UpdateFamilyCommand>
     {
         private readonly IApplicationDbContext _context;

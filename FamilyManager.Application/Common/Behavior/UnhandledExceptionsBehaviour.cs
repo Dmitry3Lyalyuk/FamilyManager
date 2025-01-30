@@ -25,7 +25,7 @@ namespace FamilyManager.Application.Common.Behavior
             {
                 var requestName = typeof(TRequest).Name;
                 _logger.LogError(ex, $"Unhandled error occured for request {requestName}. {request} handler is not found.");
-                throw;
+                throw new Exception($"Unhandler error occured for request {requestName}");
             }
         }
     }

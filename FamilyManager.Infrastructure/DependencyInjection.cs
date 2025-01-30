@@ -1,6 +1,6 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Infrastructure.Data;
-using FamilyManager.Infrastructure.Data.Interseptors;
+using FamilyManager.Infrastructure.Data.InterСeptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;

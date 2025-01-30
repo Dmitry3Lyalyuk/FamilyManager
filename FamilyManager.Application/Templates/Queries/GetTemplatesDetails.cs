@@ -16,10 +16,11 @@ namespace FamilyManager.Application.Templates.Queries
         {
             _context = context;
         }
+
         public async Task<TemplatesDetailsDTO> Handle(GetTemplatesDetailsQuery request,
             CancellationToken cancellationToken)
         {
-            var tamplatedetails = await _context.Templates
+            var tamplateDetails = await _context.Templates
                 .Where(t => t.Id == request.Id)
                 .Select(t => new TemplatesDetailsDTO
                 {
@@ -29,12 +30,12 @@ namespace FamilyManager.Application.Templates.Queries
                     Familyname = t.Family.Name
                 }).FirstOrDefaultAsync(cancellationToken);
 
-            if (tamplatedetails == null)
+            if (tamplateDetails == null)
             {
-                throw new Exception($"Template with Id{request.Id} was not faund");
+                throw new Exception($"Template with Id{request.Id} was not found");
             }
 
-            return tamplatedetails;
+            return tamplateDetails;
         }
     }
 }

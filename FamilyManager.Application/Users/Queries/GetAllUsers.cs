@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamilyManager.Application.Users.Querries
+namespace FamilyManager.Application.Users.Queries
 {
     public record GetAllUsersQuery : IRequest<List<UserDTO>>
     {
@@ -15,6 +15,7 @@ namespace FamilyManager.Application.Users.Querries
         {
             _context = context;
         }
+
         public async Task<List<UserDTO>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
             return await _context.Users

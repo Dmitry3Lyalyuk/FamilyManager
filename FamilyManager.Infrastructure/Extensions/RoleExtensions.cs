@@ -2,7 +2,7 @@
 
 namespace FamilyManager.Infrastructure.Extensions
 {
-    public static class RoleExtensions
+    public static  class RoleExtensions
     {
         public static string ToIdentityRole(this ApplicationRole role)
         {
