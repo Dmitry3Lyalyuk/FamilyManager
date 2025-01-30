@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamilyManager.Application.Families.Querries
+namespace FamilyManager.Application.Families.Queries
 {
     public record GetAllFamiliesQuery : IRequest<List<FamilyDTO>>;
 
@@ -13,6 +13,7 @@ namespace FamilyManager.Application.Families.Querries
         {
             _context = context;
         }
+
         public async Task<List<FamilyDTO>> Handle(GetAllFamiliesQuery request,
             CancellationToken cancellationToken)
         {
@@ -22,7 +23,7 @@ namespace FamilyManager.Application.Families.Querries
                     Id = f.Id,
                     Name = f.Name,
                     Category = f.Category,
-                    Brand=f.Brand
+                    Brand = f.Brand
                 }).ToListAsync(cancellationToken);
         }
     }

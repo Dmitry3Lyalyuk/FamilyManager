@@ -1,19 +1,9 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Domain.Entities;
-using FamilyManager.Domain.Enums;
 using MediatR;
 
-namespace FamilyManager.Application.Templates.Commands
+namespace FamilyManager.Application.Templates.Commands.Create
 {
-    public record CreateTemplateCommand : IRequest<Guid>
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Section Section { get; set; }
-        public Guid? UserId { get; set; }
-        public Guid FamilyId { get; set; }
-    }
     public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateCommand, Guid>
     {
         private readonly IApplicationDbContext _context;
@@ -32,6 +22,7 @@ namespace FamilyManager.Application.Templates.Commands
                 UserId = request.UserId,
                 FamilyId = request.FamilyId
             };
+
             _context.Templates.Add(template);
             await _context.SaveChangesAsync(cancellationToken);
 

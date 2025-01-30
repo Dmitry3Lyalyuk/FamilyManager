@@ -14,6 +14,7 @@ namespace FamilyManager.Web.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly TokenProvider _tokenProvider;
+
         public AuthController(UserManager<User> userManager, TokenProvider tokenProvider)
         {
             _userManager = userManager;

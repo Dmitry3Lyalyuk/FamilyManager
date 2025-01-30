@@ -1,7 +1,7 @@
-﻿using FamilyManager.Application.Families.Commands;
+﻿using FamilyManager.Application.Families.Commands.Create;
 using FluentValidation;
 
-namespace FamilyManager.Application.Familys.Validations
+namespace FamilyManager.Application.Families.Validations
 {
     public class CreateFamilyCommandValidator : AbstractValidator<CreateFamilyCommand>
     {

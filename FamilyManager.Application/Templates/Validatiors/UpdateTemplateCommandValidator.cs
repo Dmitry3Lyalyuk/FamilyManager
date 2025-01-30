@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Templates.Commands;
+﻿using FamilyManager.Application.Templates.Commands.Update;
 using FluentValidation;
 
 namespace FamilyManager.Application.Templates.Validatiors
