@@ -1,9 +1,8 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using MediatR;
 
-namespace FamilyManager.Application.Templates.Commands
+namespace FamilyManager.Application.Templates.Commands.Delete
 {
-    public record DeleteTemplateCommand(Guid Id) : IRequest;
 
     public class DeleteTemplateCommandHandler : IRequestHandler<DeleteTemplateCommand>
     {

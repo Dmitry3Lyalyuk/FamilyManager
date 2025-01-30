@@ -1,5 +1,5 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Application.Families.Commands;
+using FamilyManager.Application.Families.Commands.Update;
 using FluentValidation;
 
 namespace FamilyManager.Application.Families.Validators

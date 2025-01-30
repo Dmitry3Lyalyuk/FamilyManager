@@ -1,5 +1,5 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Application.Templates.Commands;
+using FamilyManager.Application.Templates.Commands.Create;
 using FluentValidation;
 
 namespace FamilyManager.Application.Templates.Validatiors

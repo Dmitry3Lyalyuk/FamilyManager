@@ -1,19 +1,11 @@
 ﻿using FamilyManager.Application.Common.Exceptions;
 using FamilyManager.Application.Common.Interfaces;
-using FamilyManager.Domain.Enums;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace FamilyManager.Application.Users.Commands
 {
-    public record UpdateUserCommand : IRequest
-    {
-        public Guid Id { get; set; }
-        public Country Country { get; set; }
-        public string Email { get; set; }
-    }
-
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     {
         private readonly IApplicationDbContext _context;

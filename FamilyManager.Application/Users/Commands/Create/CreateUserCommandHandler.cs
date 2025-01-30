@@ -1,18 +1,11 @@
 ﻿using FamilyManager.Application.Common.Interfaces;
 using FamilyManager.Domain.Entities;
-using FamilyManager.Domain.Enums;
 using FluentValidation;
 using MediatR;
 
 namespace FamilyManager.Application.Users.Commands
 {
-    public record CreateUserCommand : IRequest<Guid>
-    {
-        public string UserName { get; set; }
-        public Status Status { get; init; }
-        public Country Country { get; set; }
-        public string Email { get; set; }
-    }
+  
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
     {
         private readonly IApplicationDbContext _context;

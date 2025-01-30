@@ -14,6 +14,7 @@ namespace FamilyManager.Infrastructure.Identity
     {
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _dbContext;
+
         public TokenProvider(IConfiguration configuration, ApplicationDbContext dbContext)
         {
             _configuration = configuration;
@@ -74,12 +75,7 @@ namespace FamilyManager.Infrastructure.Identity
                 throw new UnauthorizedAccessException("Invalid or expired refresh token");
             }
 
-            var user = await _dbContext.Users.FindAsync(storedToken.UserId);
-
-            if (user == null)
-            {
-                throw new UnauthorizedAccessException("User not found");
-            }
+            var user = await _dbContext.Users.FindAsync(storedToken.UserId) ?? throw new UnauthorizedAccessException("User not found");
 
             var roles = await _dbContext.UserRoles
                 .Where(ur => ur.UserId == user.Id)

@@ -1,4 +1,4 @@
-﻿using FamilyManager.Application.Families.Commands;
+﻿using FamilyManager.Application.Families.Commands.Create;
 using FluentValidation;
 
 namespace FamilyManager.Application.Families.Validations
